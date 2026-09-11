@@ -1,0 +1,1630 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gyaan Setu — Offline AI Vernacular Classroom Copilot | SIH 26042</title>
+  <meta name="description" content="Offline AI vernacular classroom copilot for mother-tongue primary education in Jharkhand. Hindi to Santali (Ol Chiki) with verified native-speaker audio." />
+  
+  <!-- Fonts: DM Sans, Fraunces Serif, Noto Sans Ol Chiki, Noto Sans Devanagari -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,600&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Noto+Sans+Ol+Chiki:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#dd2f31" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Gyaan Setu" />
+  
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="font-scale-100" data-theme="light">
+
+  <!-- Top Sticky Navigation Bar -->
+  <!-- Top Sticky Navigation Bar -->
+  <header class="topbar" id="appTopbar">
+    <div class="topbar-inner">
+      <!-- Left: Brand & Classroom Context -->
+      <div class="brand-group">
+        <a class="brand" href="#home" id="navHomeBrand" aria-label="Gyaan Setu home">
+          <div class="brand-mark-wrap">
+            <span class="brand-mark" aria-hidden="true">ᱜ</span>
+            <span class="brand-sparkle">✦</span>
+          </div>
+          <div class="brand-lockup">
+            <span class="brand-name">Gyaan Setu</span>
+            <span class="brand-meta">JHARKHAND MTB-MLE</span>
+          </div>
+        </a>
+        <div class="classroom-badge" id="stickyContextPill" title="Current Classroom Configuration">
+          <span class="live-dot"></span>
+          <span class="grade-text">Grade 1</span>
+          <span class="lang-divider">·</span>
+          <span class="lang-text">Santali</span>
+        </div>
+      </div>
+
+      <!-- Center: Main Navigation Tabs (Modern Segmented Floating Pill) -->
+      <nav class="top-nav" aria-label="Main navigation" id="mainNav">
+        <button class="nav-btn active" data-view="home" title="Classroom Dashboard">
+          <svg class="nav-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <span>Home</span>
+        </button>
+        <button class="nav-btn nav-btn-kids" data-view="student" title="Baal Setu: Simple Picture & Audio Mode for Children">
+          <span class="kids-glow-icon">🎒</span>
+          <span class="kids-tab-label">बाल सेतु <small class="kids-tag">Kids</small></span>
+        </button>
+        <button class="nav-btn" data-view="syllabus" title="Official Split-Up Syllabus (SOE 2024-2025) for English, Hindi & Maths">
+          <svg class="nav-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/><path d="M6 6h10"/><path d="M6 10h10"/><path d="M6 14h6"/></svg>
+          <span>Syllabus</span>
+        </button>
+        <button class="nav-btn" data-view="teach" title="FLN Lesson Script Reader">
+          <svg class="nav-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          <span>Teach</span>
+        </button>
+        <button class="nav-btn" data-view="live" title="Push-to-Talk 3s Speech Copilot">
+          <svg class="nav-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
+          <span>Live</span>
+        </button>
+        <button class="nav-btn" data-view="worksheet" title="Printable A4 Worksheets">
+          <svg class="nav-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          <span>Worksheet</span>
+        </button>
+        <button class="nav-btn" data-view="flashcards" title="Interactive Native Flashcards">
+          <svg class="nav-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m10 15 5-3-5-3v6z"/></svg>
+          <span>Cards</span>
+        </button>
+        <button class="nav-btn" data-view="reviewer" title="Birsa Murmu Verification Queue">
+          <svg class="nav-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+          <span>Reviewer</span>
+        </button>
+        <button class="nav-btn" data-view="sync" title="Hardware Specs & Shard Sync">
+          <svg class="nav-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 1-9 9m9-9a9 9 0 0 0-9-9m9 9H3m9 9a9 9 0 0 1-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9"/></svg>
+          <span>Sync</span>
+        </button>
+      </nav>
+
+      <!-- Right: Quick Utilities, Search, Telemetry, and Profile -->
+      <div class="top-actions">
+        <!-- Modern Expandable Search -->
+        <label class="search-box" for="searchInput" title="Search lessons, phrases, LO codes...">
+          <svg class="search-icon-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input id="searchInput" type="search" placeholder="Search..." autocomplete="off" />
+          <span class="search-shortcut">/</span>
+        </label>
+
+        <!-- Status & Tool Buttons -->
+        <div class="tools-cluster">
+          <!-- Offline status indicator -->
+          <button class="offline-chip" id="offlineStatusBtn" title="Device Telemetry: 100% Offline (2 GB RAM Budget)">
+            <i class="status-indicator-dot"></i>
+            <span id="offlineChipText">Offline</span>
+          </button>
+
+          <!-- Divider -->
+          <span class="tools-divider"></span>
+
+          <!-- Accessibility Audio Narrator -->
+          <button class="action-btn" id="narrateScreenBtn" title="Speak screen instructions in Hindi (Audio narrator)" aria-label="Audio narrator">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+          </button>
+
+          <!-- Font Scaling Toggle -->
+          <button class="action-btn" id="fontScaleBtn" title="Scale font size for bright sunlight" aria-label="Scale font size">
+            <span class="font-scale-txt">A<sup>+</sup></span>
+          </button>
+
+          <!-- SIH Demo Mode Trigger -->
+          <button class="demo-launcher-btn" id="openDemoRunnerBtn" title="Open SIH 4-Minute Presentation Stepper">
+            <span class="demo-pulse-dot"></span>
+            <span>Demo</span>
+          </button>
+
+          <!-- Teacher Profile Avatar -->
+          <button class="avatar-btn" id="profileModalBtn" title="Sunita Devi (GPS Jamda, West Singhbhum)">
+            <span class="avatar-initials">SD</span>
+            <span class="avatar-presence-dot"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Slim Elegant Notification Ribbon -->
+  <aside class="system-status-banner" id="systemBanner">
+    <div class="status-banner-content">
+      <div class="status-badge"><span class="status-icon">🛡️</span> <strong>Verified-First:</strong></div>
+      <span class="status-msg">100% of curriculum content is approved by native reviewers. Live AI translations are visibly tagged with <strong class="amber-tag">⚠ AI</strong>.</span>
+      <button class="status-dismiss" id="dismissBannerBtn" title="Dismiss banner" aria-label="Dismiss banner">✕</button>
+    </div>
+  </aside>
+
+  <!-- Global View Container -->
+  <main class="main-viewport" id="mainViewport">
+
+    <!-- ========================================================================= -->
+    <!-- VIEW 1: HOME / TEACHER DASHBOARD HUB                                      -->
+    <!-- ========================================================================= -->
+    <section class="view-panel active" id="view-home">
+      <!-- Hero Section -->
+      <section class="hero-wrap">
+        <div class="hero-inner">
+          <div class="hero-copy">
+            <div class="crumbs">
+              <span>JHARKHAND PALASH INITIATIVE</span>
+              <span class="crumb-sep">|</span>
+              <span>NIPUN BHARAT FLN</span>
+              <span class="crumb-sep">|</span>
+              <span class="verified-pill">100% AIRPLANE-MODE READY</span>
+            </div>
+            <h1>Teach in the language<br><em>children understand.</em></h1>
+            <p class="hero-lede">
+              Empowering Hindi-medium primary teachers in Jharkhand's tribal schools. Speak Hindi commands, deliver verified Santali (Ol Chiki) lesson scripts, and converse within 3 seconds — fully offline on low-cost tablets.
+            </p>
+            <div class="hero-actions">
+              <button class="primary-button" id="heroStartLessonBtn">
+                <span>Start Today’s Lesson</span> <span>→</span>
+              </button>
+              <button class="kids-mode-hero-pill" id="heroKidsModeBtn" title="Launch Baal Setu for Primary Students">
+                <span class="pill-spark">✨</span> <span>🎒 बाल सेतु (Kids Mode)</span>
+              </button>
+              <button class="outline-button" id="heroOpenLiveBtn">
+                <span>🎙️ Live Classroom</span>
+              </button>
+              <button class="outline-button secondary" id="heroMakeWorksheetBtn">
+                <span>📝 Print Worksheet</span>
+              </button>
+            </div>
+            <div class="hero-proof">
+              <span><strong class="check-mark">✓</strong> Zero network needed</span>
+              <span class="proof-divider"></span>
+              <span><strong class="check-mark">✓</strong> Native-speaker human QA</span>
+              <span class="proof-divider"></span>
+              <span><strong class="check-mark">✓</strong> Child privacy by design (Zero audio saved)</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Language Selector Row -->
+      <section class="content-section" id="packSection">
+        <div class="section-top">
+          <div>
+            <h2>Choose your classroom language</h2>
+            <p class="section-subtext">Verified language models and native speaker recordings for Jharkhand primary schools.</p>
+          </div>
+          <div class="section-note">
+            <span>◈</span> <strong>Santali (Ol Chiki) Active</strong>
+            <span class="note-sep">|</span>
+            <span>◷</span> 64.8 MB Pack Loaded
+          </div>
+        </div>
+
+        <div class="pack-row" role="list">
+          <button class="pack-pill selected" data-language="Santali" role="listitem">
+            <span class="pack-symbol">ᱥ</span>
+            <div class="pack-details">
+              <strong>Santali (ᱥᱟᱱᱛᱟᱲᱤ)</strong>
+              <small>Ol Chiki + Devanagari · MVP Language</small>
+            </div>
+            <span class="pack-tag active-tag">Active (v14)</span>
+          </button>
+
+          <button class="pack-pill muted-pack" data-language="Mundari" role="listitem">
+            <span class="pack-symbol">ᱢ</span>
+            <div class="pack-details">
+              <strong>Mundari (ᱢᱩᱱᱰᱟᱨᱤ)</strong>
+              <small>Phase 2 · AdiBhashaa / Adi Vaani</small>
+            </div>
+            <span class="pack-tag roadmap-tag">Roadmap</span>
+          </button>
+
+          <button class="pack-pill muted-pack" data-language="Ho" role="listitem">
+            <span class="pack-symbol">ᱦ</span>
+            <div class="pack-details">
+              <strong>Ho (ᱦᱳ)</strong>
+              <small>Phase 3 · Warang Citi Corpus Building</small>
+            </div>
+            <span class="pack-tag roadmap-tag">Roadmap</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Quick Action Paths Grid (Reachable in <= 2 taps) -->
+      <section class="content-section paths-section">
+        <div class="section-top paths-heading">
+          <div>
+            <h2>Classroom Copilot Surfaces</h2>
+            <p class="section-subtext">Designed for the teacher's hands: 72dp touch targets, high contrast, two taps to any task.</p>
+          </div>
+          <span class="badge-accent">≤ 2 Taps to Action</span>
+        </div>
+
+        <div class="path-grid">
+          <!-- Teach Mode Card -->
+          <div class="path-card path-teach" data-target-view="teach" role="button" tabindex="0" aria-label="Open Teach Mode">
+            <div class="path-icon">▤</div>
+            <div class="path-content">
+              <h3>Teach Mode</h3>
+              <p>Bilingual lesson scripts with sentence-level native audio, activity steps, and sticky NIPUN outcomes.</p>
+              <div class="card-meta">
+                <span class="chip-mini green">✓ 10 Lessons Loaded</span>
+                <span class="chip-mini">Grade 1</span>
+              </div>
+            </div>
+            <span class="path-arrow">→</span>
+          </div>
+
+          <!-- Live Classroom Card -->
+          <div class="path-card path-live" data-target-view="live" role="button" tabindex="0" aria-label="Open Live Classroom Mode">
+            <div class="path-icon">🎙️</div>
+            <div class="path-content">
+              <h3>Live Classroom Mode</h3>
+              <p>Push-to-talk speech translation within 3 seconds. Fast phrase-bank matching + child speech reverse path.</p>
+              <div class="card-meta">
+                <span class="chip-mini blue">⚡ &lt; 1.5s Fast Path</span>
+                <span class="chip-mini amber">⚠ AI Fallback</span>
+              </div>
+            </div>
+            <span class="path-arrow">→</span>
+          </div>
+
+          <!-- Worksheet Card -->
+          <div class="path-card path-sheet" data-target-view="worksheet" role="button" tabindex="0" aria-label="Open Worksheet Generator">
+            <div class="path-icon">📄</div>
+            <div class="path-content">
+              <h3>Worksheet Generator</h3>
+              <p>Deterministic assembly from verified item banks. High-contrast, photocopier-ready A4 PDF export with answer key.</p>
+              <div class="card-meta">
+                <span class="chip-mini yellow">🖨️ Ink-friendly A4</span>
+                <span class="chip-mini">NIPUN LO Stamp</span>
+              </div>
+            </div>
+            <span class="path-arrow">→</span>
+          </div>
+
+          <!-- Flashcards Card -->
+          <div class="path-card path-cards" data-target-view="flashcards" role="button" tabindex="0" aria-label="Open Flashcard Studio">
+            <div class="path-icon">✦</div>
+            <div class="path-content">
+              <h3>Flashcard Studio</h3>
+              <p>Full-screen interactive visual decks with Jharkhand line art, Ol Chiki script, and native pronunciation audio.</p>
+              <div class="card-meta">
+                <span class="chip-mini green">🔊 Tap-to-Hear</span>
+                <span class="chip-mini">6 Decks (50+ cards)</span>
+              </div>
+            </div>
+            <span class="path-arrow">→</span>
+          </div>
+
+          <!-- Syllabus Card -->
+          <div class="path-card path-syllabus" data-target-view="syllabus" role="button" tabindex="0" aria-label="Open SOE Syllabus">
+            <div class="path-icon">📋</div>
+            <div class="path-content">
+              <h3>SOE Syllabus (2024–25)</h3>
+              <p>Official School of Excellence Split-Up Syllabus: English, हिन्दी (सारंगी), and गणित across all 224 working days.</p>
+              <div class="card-meta">
+                <span class="chip-mini green">✓ 3 Subjects</span>
+                <span class="chip-mini blue">224 Working Days</span>
+                <span class="chip-mini">Month &amp; Week Split</span>
+              </div>
+            </div>
+            <span class="path-arrow">→</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Next in Class Banner -->
+      <section class="content-section class-section">
+        <div class="class-banner">
+          <div class="banner-text">
+            <span class="eyebrow">TODAY’S RECOMMENDED LESSON · GRADE 1</span>
+            <h2>ᱚᱞ ᱪᱤᱠᱤ letters — First Five Sounds (पहला पाठ: अक्षर ध्वनि)</h2>
+            <p>Subject: Language (Santali / Hindi) · NIPUN LO: <code>PLACEHOLDER::EC-G1-001</code> · 15 minutes</p>
+            <div class="banner-tags">
+              <span class="tag-pill green">✓ 100% Native Reviewed</span>
+              <span class="tag-pill">5 Script Lines</span>
+              <span class="tag-pill">Activity: Sound Hunt</span>
+            </div>
+          </div>
+          <button class="small-button" id="bannerOpenLessonBtn">
+            <span>Open Lesson Script</span> <span>→</span>
+          </button>
+          <div class="number-art" aria-hidden="true">
+            <span>ᱚ</span><span>ᱛ</span><span>ᱜ</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Reviewer & Sync Quick Banner -->
+      <section class="content-section">
+        <div class="twin-banner-row">
+          <div class="action-card-secondary" data-target-view="reviewer">
+            <div class="sec-icon">✅</div>
+            <div>
+              <h4>Native Speaker Reviewer Console</h4>
+              <p>Birsa Murmu’s verification queue: approve, reject, or correct classroom translations.</p>
+              <span class="link-label">Open Review Queue (3 pending) →</span>
+            </div>
+          </div>
+          <div class="action-card-secondary" data-target-view="sync">
+            <div class="sec-icon">📶</div>
+            <div>
+              <h4>Offline Delta Sync &amp; Hardware Specs</h4>
+              <p>Verify package checksums, local Wi-Fi Direct sync, and 2 GB RAM telemetry.</p>
+              <span class="link-label">Inspect System Telemetry →</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Trust Bar -->
+      <section class="content-section trust-section">
+        <div class="trust-line">
+          <div>
+            <strong>Built specifically for single-teacher rural schools in Jharkhand</strong>
+            <span>Verified beats fluent · 72dp targets · WCAG AAA contrast · Offline is the default state</span>
+          </div>
+          <div class="trust-items">
+            <span>✓ 3-second live dialogue target</span>
+            <span>✓ Runs inside 550 MB RAM on 2 GB tablet</span>
+            <span>✓ Zero student PII ever leaves device</span>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- VIEW: BAAL SETU (BAL SETU) — PRIMARY STUDENT LEARNING PLAYGROUND           -->
+    <!-- ========================================================================= -->
+    <section class="view-panel" id="view-student">
+      <!-- Kid-Friendly Header Banner -->
+      <div class="student-hero-banner">
+        <div class="student-hero-left">
+          <div class="student-mascot">🎒</div>
+          <div>
+            <span class="kids-badge">बाल सेतु · ᱜᱤᱫᱽᱨᱟᱹ ᱥᱮᱛᱩ</span>
+            <h2>जोहार प्यारे बच्चों! खेलो और सीखो</h2>
+            <p>चित्रों को छुओ, सुंदर आवाज़ सुनो और नए शब्द सीखो!</p>
+          </div>
+        </div>
+        <div class="student-hero-right">
+          <!-- Star Reward Counter -->
+          <div class="kids-star-box" id="kidsStarBox">
+            <span class="star-icon animate-star">⭐</span>
+            <div>
+              <strong id="kidsStarScore">0</strong>
+              <small>सितारे (Stars)</small>
+            </div>
+          </div>
+          <!-- Spoken Audio Prompt for Kids -->
+          <button class="kids-audio-guide-btn" id="kidsAudioGuideBtn" title="आवाज़ सुनो (Listen to voice instructions)">
+            <span>🔊 बोलकर बताओ</span>
+          </button>
+          <!-- Switch to Teacher Mode -->
+          <button class="kids-exit-btn" id="exitKidsModeBtn" title="Return to Teacher Dashboard">
+            <span>👩‍🏫 शिक्षक मोड</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 4 Giant Kid Activities -->
+      <div class="kids-activities-grid">
+        
+        <!-- Activity 1: Animals & Sounds -->
+        <div class="kids-card-activity" id="kidsAnimalsSection">
+          <div class="kids-section-head">
+            <div class="kids-head-icon" style="background: #fef3c7; color: #b45309;">🐾</div>
+            <div>
+              <h3>जानवर और पक्षी (Animals &amp; Sounds)</h3>
+              <p>चित्र को छुओ — संथाली और हिंदी में नाम सुनो!</p>
+            </div>
+          </div>
+          <div class="kids-animal-grid">
+            <button class="kid-touch-card" data-animal="merom">
+              <span class="animal-emoji">🐐</span>
+              <strong class="kid-word-hi">बकरी</strong>
+              <span class="kid-word-sat">ᱢᱮᱨᱚᱢ</span>
+              <small class="kid-translit">(मेरोम)</small>
+              <span class="touch-hint">🔊 छुओ</span>
+            </button>
+            <button class="kid-touch-card" data-animal="seta">
+              <span class="animal-emoji">🐕</span>
+              <strong class="kid-word-hi">कुत्ता</strong>
+              <span class="kid-word-sat">ᱥᱮᱛᱟ</span>
+              <small class="kid-translit">(सेता)</small>
+              <span class="touch-hint">🔊 छुओ</span>
+            </button>
+            <button class="kid-touch-card" data-animal="hati">
+              <span class="animal-emoji">🐘</span>
+              <strong class="kid-word-hi">हाथी</strong>
+              <span class="kid-word-sat">ᱦᱟᱹᱛᱤ</span>
+              <small class="kid-translit">(हाती)</small>
+              <span class="touch-hint">🔊 छुओ</span>
+            </button>
+            <button class="kid-touch-card" data-animal="gay">
+              <span class="animal-emoji">🐄</span>
+              <strong class="kid-word-hi">गाय</strong>
+              <span class="kid-word-sat">ᱜᱟᱹᱭ</span>
+              <small class="kid-translit">(गाई)</small>
+              <span class="touch-hint">🔊 छुओ</span>
+            </button>
+            <button class="kid-touch-card" data-animal="tarub">
+              <span class="animal-emoji">🐅</span>
+              <strong class="kid-word-hi">बाघ</strong>
+              <span class="kid-word-sat">ᱛᱟᱹᱨᱩᱵ</span>
+              <small class="kid-translit">(तारुब)</small>
+              <span class="touch-hint">🔊 छुओ</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Activity 2: Interactive Pebble Counter (1-10) -->
+        <div class="kids-card-activity" id="kidsCountingSection">
+          <div class="kids-section-head">
+            <div class="kids-head-icon" style="background: #e0e7ff; color: #4338ca;">🔢</div>
+            <div>
+              <h3>कंकड़ गिनती खेल (Count 1–10)</h3>
+              <p>एक-एक कंकड़ को छूकर गिनती करो!</p>
+            </div>
+            <button class="kids-reset-btn" id="kidsResetCounterBtn">🔄 फिर से</button>
+          </div>
+          
+          <div class="pebble-counting-stage">
+            <div class="pebble-counter-display">
+              <div class="big-num-bubble" id="kidsBigNum">0</div>
+              <div class="num-words-display">
+                <span class="sat-num-word" id="kidsSatNumWord">गिनती शुरू करो!</span>
+                <span class="hi-num-word" id="kidsHiNumWord">कंकड़ को छुओ</span>
+              </div>
+            </div>
+            
+            <div class="pebbles-interactive-row" id="kidsPebblesRow">
+              <!-- 10 Tappable Pebbles -->
+              <button class="pebble-btn" data-num="1" title="1">⚪</button>
+              <button class="pebble-btn" data-num="2" title="2">⚪</button>
+              <button class="pebble-btn" data-num="3" title="3">⚪</button>
+              <button class="pebble-btn" data-num="4" title="4">⚪</button>
+              <button class="pebble-btn" data-num="5" title="5">⚪</button>
+              <button class="pebble-btn" data-num="6" title="6">⚪</button>
+              <button class="pebble-btn" data-num="7" title="7">⚪</button>
+              <button class="pebble-btn" data-num="8" title="8">⚪</button>
+              <button class="pebble-btn" data-num="9" title="9">⚪</button>
+              <button class="pebble-btn" data-num="10" title="10">⚪</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Activity 3: Magic Ol Chiki Letters -->
+        <div class="kids-card-activity" id="kidsLettersSection">
+          <div class="kids-section-head">
+            <div class="kids-head-icon" style="background: #fce7f3; color: #be185d;">🔤</div>
+            <div>
+              <h3>जादुई अक्षर ध्वनि (Ol Chiki Letter Sounds)</h3>
+              <p>अक्षर को छुओ और बोलो!</p>
+            </div>
+          </div>
+          
+          <div class="kids-letters-row">
+            <button class="letter-bubble-btn" data-letter="ᱚ" data-sound="O" data-meaning="ᱚᱞ (लिखना · Pencil)">
+              <span class="big-glyph">ᱚ</span>
+              <small class="glyph-deva">ऑ</small>
+            </button>
+            <button class="letter-bubble-btn" data-letter="ᱛ" data-sound="At" data-meaning="ᱛᱟᱹᱨᱩᱵ (बाघ · Tiger)">
+              <span class="big-glyph">ᱛ</span>
+              <small class="glyph-deva">अत्</small>
+            </button>
+            <button class="letter-bubble-btn" data-letter="ᱜ" data-sound="Ag" data-meaning="ᱜᱟᱹᱭ (गाय · Cow)">
+              <span class="big-glyph">ᱜ</span>
+              <small class="glyph-deva">अग्</small>
+            </button>
+            <button class="letter-bubble-btn" data-letter="ᱝ" data-sound="Ang" data-meaning="ᱟᱲᱟᱝ (ध्वनि · Sound)">
+              <span class="big-glyph">ᱝ</span>
+              <small class="glyph-deva">अं</small>
+            </button>
+            <button class="letter-bubble-btn" data-letter="ᱞ" data-sound="Al" data-meaning="ᱞᱮᱠᱷᱟ (गिनती · Count)">
+              <span class="big-glyph">ᱞ</span>
+              <small class="glyph-deva">अल्</small>
+            </button>
+            <button class="letter-bubble-btn" data-letter="ᱟ" data-sound="Aah" data-meaning="ᱟᱨᱟᱜ (लाल · Red)">
+              <span class="big-glyph">ᱟ</span>
+              <small class="glyph-deva">आ</small>
+            </button>
+          </div>
+          <div class="letter-pop-result" id="kidsLetterResult">
+            <span>अक्षर को छूकर उसकी आवाज़ सुनें!</span>
+          </div>
+        </div>
+
+        <!-- Activity 4: Magic Kid Mic -->
+        <div class="kids-card-activity" id="kidsMicSection">
+          <div class="kids-section-head">
+            <div class="kids-head-icon" style="background: #dcfce7; color: #15803d;">🎙️</div>
+            <div>
+              <h3>बोलने का अभ्यास (Speak &amp; Listen)</h3>
+              <p>बड़ा माइक दबाकर बोलो — जादू की आवाज़ सुनो!</p>
+            </div>
+          </div>
+
+          <div class="kids-mic-playground">
+            <button class="kids-giant-talking-mic" id="kidsTalkingMicBtn">
+              <div class="kids-mic-circle">
+                <span class="mic-face">🎙️😊</span>
+                <strong>माइक छुओ (Tap Me)</strong>
+              </div>
+            </button>
+            <div class="kids-speech-response-box" id="kidsMicFeedback">
+              <span>माइक दबाओ और अपनी मातृभाषा में बोलो!</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- VIEW: SPLIT-UP SYLLABUS (SOE 2024-2025) CLASS 1                            -->
+    <!-- ========================================================================= -->
+    <section class="view-panel" id="view-syllabus">
+      <div class="module-header">
+        <div class="header-breadcrumb">
+          <button class="back-link" data-view="home">← Back to Dashboard</button>
+          <span class="sep">/</span>
+          <span>Official SOE Split-Up Syllabus (Session: 2024–2025)</span>
+          <span class="sep">/</span>
+          <span class="curr-lesson-title" id="syllabusCurrentSubjectBreadcrumb">Class 1 · English (Mridang)</span>
+        </div>
+        <div class="header-controls">
+          <button class="action-btn-pill" id="syllabusPrintBtn">
+            <span>🖨️</span> Print Syllabus Plan
+          </button>
+        </div>
+      </div>
+
+      <!-- Syllabus Master Header & Subject Selector -->
+      <div class="syllabus-top-container">
+        <div class="syllabus-banner">
+          <div class="syllabus-banner-info">
+            <div class="soe-seal-pill">
+              <span class="seal-icon">🏛️</span>
+              <span>SCHOOL OF EXCELLENCE (SOE) · JHARKHAND</span>
+              <span class="session-tag">SESSION: 2024–2025</span>
+            </div>
+            <h2>SPLIT UP SYLLABUS — CLASS I (GRADE 1)</h2>
+            <p class="syllabus-subtitle">Official month-by-month and week-by-week curriculum roadmap with Learning Outcomes, NIPUN FLN mappings, periods, and direct lesson links. Total Working Days: <strong>224 Days (Tentative)</strong>.</p>
+          </div>
+          <div class="syllabus-stats-strip">
+            <div class="stat-pill"><span class="pill-label">Working Days</span><strong class="pill-val">224 Days</strong></div>
+            <div class="stat-pill"><span class="pill-label">Evaluation</span><strong class="pill-val">Continuous &amp; SA II</strong></div>
+            <div class="stat-pill"><span class="pill-label">Subjects</span><strong class="pill-val">3 Core</strong></div>
+            <div class="stat-pill"><span class="pill-label">Tribal Medium</span><strong class="pill-val">Santali Ol Chiki</strong></div>
+          </div>
+        </div>
+
+        <!-- Subject Switcher Tabs -->
+        <div class="syllabus-subject-tabs" id="syllabusSubjectTabs">
+          <button class="syl-sub-btn active" data-subject="english">
+            <span class="syl-sub-icon">🇬🇧</span>
+            <div class="syl-sub-meta">
+              <strong>English</strong>
+              <small>Mridang · Class 1</small>
+            </div>
+          </button>
+          <button class="syl-sub-btn" data-subject="hindi">
+            <span class="syl-sub-icon">🇮🇳</span>
+            <div class="syl-sub-meta">
+              <strong>हिन्दी (Hindi)</strong>
+              <small>सारंगी · कक्षा १</small>
+            </div>
+          </button>
+          <button class="syl-sub-btn" data-subject="maths">
+            <span class="syl-sub-icon">🔢</span>
+            <div class="syl-sub-meta">
+              <strong>गणित (Maths)</strong>
+              <small>Joyful Mathematics · Class 1</small>
+            </div>
+          </button>
+        </div>
+
+        <!-- Month Filter Row -->
+        <div class="syllabus-month-filter-bar">
+          <span class="filter-label">Filter Month:</span>
+          <div class="month-pills-wrap" id="syllabusMonthPills">
+            <button class="month-pill active" data-month="all">All Months</button>
+            <button class="month-pill" data-month="May & June">May &amp; June (33d)</button>
+            <button class="month-pill" data-month="July">July (25d)</button>
+            <button class="month-pill" data-month="August">August (24d)</button>
+            <button class="month-pill" data-month="September">September (20d)</button>
+            <button class="month-pill" data-month="October">October (21d)</button>
+            <button class="month-pill" data-month="November">November (21d)</button>
+            <button class="month-pill" data-month="December">December (19d)</button>
+            <button class="month-pill" data-month="January">January (20d)</button>
+            <button class="month-pill" data-month="February">February (20d)</button>
+            <button class="month-pill" data-month="March">March (21d)</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Syllabus Content Timeline / Cards List -->
+      <div class="syllabus-content-area" id="syllabusTimelineArea">
+        <!-- Dynamically rendered month and week cards -->
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- VIEW 2: TEACH MODE (FLN CURRICULUM SCRIPT READER)                        -->
+    <!-- ========================================================================= -->
+    <section class="view-panel" id="view-teach">
+      <div class="module-header">
+        <div class="header-breadcrumb">
+          <button class="back-link" data-view="home">← Back to Dashboard</button>
+          <span class="sep">/</span>
+          <span>Teach Mode</span>
+          <span class="sep">/</span>
+          <span class="curr-lesson-title" id="teachHeaderLessonTitle">Lesson 1: Ol Chiki First Sounds</span>
+        </div>
+        <div class="header-controls">
+          <div class="script-toggle-group">
+            <span class="toggle-label">Santali Script:</span>
+            <button class="toggle-btn active" id="btnScriptBoth">Ol Chiki + Devanagari</button>
+            <button class="toggle-btn" id="btnScriptOlChikiOnly">Ol Chiki Only</button>
+            <button class="toggle-btn" id="btnScriptDevaOnly">Devanagari Only</button>
+          </div>
+          <div class="audio-speed-control">
+            <span class="toggle-label">Speed:</span>
+            <button class="speed-btn active" data-speed="1.0">1.0×</button>
+            <button class="speed-btn" data-speed="0.75" title="Slow speech for Grade 1 phonics">0.75×</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="teach-layout">
+        <!-- Sidebar: Lesson Navigator -->
+        <aside class="teach-sidebar">
+          <div class="sidebar-header">
+            <h3>SOE Class 1 Curriculum</h3>
+            <span class="curriculum-badge">SOE 2024–25</span>
+          </div>
+          <div class="lesson-filter-row" id="teachSubjectFilterRow">
+            <button class="filter-pill active" data-subject="all">All</button>
+            <button class="filter-pill" data-subject="english">English</button>
+            <button class="filter-pill" data-subject="hindi">सारंगी</button>
+            <button class="filter-pill" data-subject="math">गणित</button>
+          </div>
+          <div class="teach-month-select-row" style="margin: 8px 0 10px;">
+            <select id="teachMonthFilterSelect" class="teach-select-control" style="width: 100%; font-size: 11.5px; padding: 5px 8px; border-radius: var(--radius-sm); border: 1px solid var(--line); background: #ffffff;">
+              <option value="all">All Academic Months (May–March)</option>
+              <option value="May & June">May &amp; June (Vidya Pravesh)</option>
+              <option value="July">July (Foundations)</option>
+              <option value="August">August (Unit 1 / Pre-number)</option>
+              <option value="September">September (Hopscotch / Making 10)</option>
+              <option value="October">October (Unit 2 / Life Around Us)</option>
+              <option value="November">November (Farm Animals / Numbers)</option>
+              <option value="December">December (Unit 3 / Food &amp; Market)</option>
+              <option value="January">January (Unit 4 / Seasons &amp; Toys)</option>
+              <option value="February & March">February &amp; March (Revision &amp; SA II)</option>
+            </select>
+          </div>
+          <div class="lesson-list" id="teachLessonList">
+            <!-- Dynamically populated lessons -->
+          </div>
+        </aside>
+
+        <!-- Main Lesson Reader View -->
+        <div class="teach-content-pane">
+          <!-- Sticky NIPUN Learning Outcome Banner -->
+          <div class="lo-banner">
+            <div class="lo-badge-group">
+              <span class="nipun-flag">NIPUN BHARAT FLN</span>
+              <span class="lo-code" id="teachLoCode">PLACEHOLDER::EC-G1-001</span>
+              <span class="lo-state-badge">✓ Mapped to Lakshya Soochi</span>
+            </div>
+            <h2 class="lo-title" id="teachLoTitle">Recognizes primary sounds and associates them with corresponding letter symbols</h2>
+            <div class="lo-meta">
+              <span><strong>Grade:</strong> 1</span>
+              <span class="sep">•</span>
+              <span><strong>Subject:</strong> <span id="teachSubject">Language (Santali / Hindi)</span></span>
+              <span class="sep">•</span>
+              <span><strong>Domain:</strong> <span id="teachDomain">Effective Communicators (EC)</span></span>
+            </div>
+          </div>
+
+          <!-- Lesson Quick Actions Bar -->
+          <div class="lesson-quick-actions">
+            <div class="action-info">
+              <span class="chip-verified">✓ PUBLISHED</span>
+              <span class="rev-stamp" id="teachReviewerStamp">Verified by Birsa Murmu (REV-BIRSA-042)</span>
+            </div>
+            <div class="action-buttons">
+              <button class="action-outline-btn" id="teachToWorksheetBtn">
+                <span>📝</span> Generate Worksheet for this LO
+              </button>
+              <button class="action-outline-btn" id="teachToFlashcardsBtn">
+                <span>🎴</span> Open Flashcards Deck
+              </button>
+              <button class="action-primary-btn" id="teachJumpLiveBtn">
+                <span>🎙️</span> Practice in Live Classroom
+              </button>
+            </div>
+          </div>
+
+          <!-- Two-Column Script Table -->
+          <div class="script-card">
+            <div class="script-header-row">
+              <div class="script-col-title">
+                <span class="lang-flag">🇮🇳 HINDI</span>
+                <span>Teacher Script (बोलो)</span>
+              </div>
+              <div class="script-col-title">
+                <span class="lang-flag">ᱥ SANTALI (OL CHIKI)</span>
+                <span>Classroom Utterance (ᱟᱲᱟᱝ / आवाज़)</span>
+              </div>
+              <div class="script-col-action">
+                <span>Audio Playback</span>
+              </div>
+            </div>
+
+            <div class="script-lines-container" id="teachScriptLines">
+              <!-- Dynamically populated script lines with sentence-level playback -->
+            </div>
+          </div>
+
+          <!-- Activity Block -->
+          <div class="classroom-block activity-block">
+            <div class="block-icon">🎯</div>
+            <div class="block-content">
+              <h4>Classroom Activity (गतिविधि): <span id="teachActivityTitle">Sound Hunt (ᱟᱲᱟᱝ ᱥᱮᱸᱫᱽᱨᱟ)</span></h4>
+              <p id="teachActivityDesc">Ask children to search around the classroom for objects that start with the target sound. Give encouragement in Santali using the audio buttons.</p>
+              <div class="activity-instructions" id="teachActivitySteps">
+                <!-- Activity steps -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Materials Block -->
+          <div class="classroom-block materials-block">
+            <div class="block-icon">📦</div>
+            <div class="block-content">
+              <h4>Required Materials (आवश्यक सामग्री):</h4>
+              <ul class="materials-list" id="teachMaterialsList">
+                <!-- Materials list -->
+              </ul>
+            </div>
+          </div>
+
+          <!-- Formative Assessment Prompt Block -->
+          <div class="classroom-block assessment-block">
+            <div class="block-icon">⭐</div>
+            <div class="block-content">
+              <h4>Oral Assessment Prompt (मौखिक मूल्यांकन):</h4>
+              <div class="assessment-box" id="teachAssessmentBox">
+                <!-- Assessment prompt -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- VIEW 3: LIVE CLASSROOM MODE (THE 3-SECOND FEATURE)                       -->
+    <!-- ========================================================================= -->
+    <section class="view-panel" id="view-live">
+      <div class="module-header">
+        <div class="header-breadcrumb">
+          <button class="back-link" data-view="home">← Back to Dashboard</button>
+          <span class="sep">/</span>
+          <span>Live Classroom</span>
+          <span class="sep">/</span>
+          <span class="mode-tag">Real-Time Bilingual Copilot</span>
+        </div>
+        <div class="latency-target-chip">
+          <span>Target: &lt; 3.0s (Fast Path &lt; 1.5s)</span>
+        </div>
+      </div>
+
+      <div class="live-layout">
+        <!-- Left / Top Column: Live Interaction Pane -->
+        <div class="live-interaction-pane">
+          
+          <!-- Direction Mode Switch -->
+          <div class="direction-switch-card">
+            <div class="direction-switch-bar">
+              <button class="direction-tab active" id="dirTeacherToClass">
+                <span class="dir-icon">👩‍🏫 ➔ 👦👧</span>
+                <span class="dir-text">
+                  <strong>Teacher speaks Hindi</strong>
+                  <small>App speaks verified Santali audio</small>
+                </span>
+              </button>
+              <button class="direction-tab" id="dirChildToTeacher">
+                <span class="dir-icon">👦👧 ➔ 👩‍🏫</span>
+                <span class="dir-text">
+                  <strong>Child speaks Santali</strong>
+                  <small>App shows Hindi gist to teacher</small>
+                </span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Live Conversation Feed -->
+          <div class="transcript-pane" id="liveTranscriptPane" role="log" aria-live="polite">
+            <!-- Messages inserted here -->
+            <div class="transcript-welcome" id="liveEmptyState">
+              <div class="welcome-icon">🎙️</div>
+              <h3>Classroom Dialogue Session Ready</h3>
+              <p>Hold the <strong>Push-to-Talk Mic</strong> below or select a common classroom command from the Phrase Bank on the right.</p>
+              <div class="quick-tips">
+                <span>⚡ Common classroom commands match in ~600ms</span>
+                <span>🛡️ Unverified AI output is marked in amber</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Latency Waterfall Card (Demystifies 3-second claim) -->
+          <div class="latency-waterfall-card" id="latencyCard">
+            <div class="waterfall-header">
+              <span class="meter-title">⚡ REAL-TIME LATENCY WATERFALL (<span id="latencyTotalMs">628</span> ms)</span>
+              <span class="waterfall-tag green" id="latencyPathTag">FAST PATH (PHRASE BANK HIT)</span>
+            </div>
+            <div class="waterfall-bars">
+              <div class="bar-step" title="Voice Activity Detection Endpoint">
+                <span class="bar-label">VAD</span>
+                <div class="bar-fill" style="width: 25%;"><span id="vadMs">180ms</span></div>
+              </div>
+              <div class="bar-step" title="On-Device Hindi ASR (CTC Greedy)">
+                <span class="bar-label">ASR</span>
+                <div class="bar-fill" style="width: 40%;"><span id="asrMs">340ms</span></div>
+              </div>
+              <div class="bar-step" title="FTS5 Phrase Lookup / IndicTrans2 MT">
+                <span class="bar-label" id="lookupLabel">Lookup</span>
+                <div class="bar-fill" style="width: 15%;"><span id="lookupMs">24ms</span></div>
+              </div>
+              <div class="bar-step" title="Cached Audio Decode / Piper TTS">
+                <span class="bar-label" id="ttsLabel">Audio</span>
+                <div class="bar-fill" style="width: 20%;"><span id="ttsMs">84ms</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Control Bar: Push-To-Talk Mic & Input Controls -->
+          <div class="live-bottom-dock">
+            <!-- Manual Hindi Input / Simulated Speech -->
+            <div class="manual-input-box">
+              <input type="text" id="liveTextInput" placeholder="Or type/test a Hindi phrase (e.g. 'सब बच्चे किताब खोलो' or off-script)..." />
+              <button class="send-phrase-btn" id="sendPhraseBtn">Translate</button>
+            </div>
+
+            <div class="mic-controls-row">
+              <div class="toggle-confirmation">
+                <label class="confirm-checkbox-label">
+                  <input type="checkbox" id="confirmBeforeSpeakToggle" />
+                  <span>Confirm Hindi text before speaking</span>
+                </label>
+              </div>
+
+              <!-- Giant Push-to-Talk Button (>= 72dp target) -->
+              <button class="giant-mic-btn" id="giantMicBtn" aria-label="Hold to speak Hindi">
+                <div class="mic-wave-ring"></div>
+                <div class="mic-inner">
+                  <span class="mic-icon">🎙️</span>
+                  <span class="mic-status-label" id="micStatusText">HOLD TO SPEAK</span>
+                </div>
+              </button>
+
+              <div class="sim-controls">
+                <button class="sim-btn" id="simFastPathBtn" title="Test Fast-Path Phrase Hit (सब बच्चे किताब खोलो)">⚡ Test Fast-Path</button>
+                <button class="sim-btn" id="simDynamicBtn" title="Test Dynamic AI Translation (Off-script phrase)">⚠ Test AI Dynamic</button>
+                <button class="sim-btn" id="simChildBtn" title="Test Child Speaks (Santali to Hindi)">👦 Test Child Speak</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: 800+ Verified Phrase Bank Drawer -->
+        <aside class="phrasebank-drawer">
+          <div class="drawer-header">
+            <h3>⚡ Verified Phrase Bank</h3>
+            <span class="bank-count-badge">840+ Phrases</span>
+          </div>
+          <p class="drawer-desc">Instant match with cached native audio. Tapping any phrase plays verified audio immediately in &lt;1.5s.</p>
+
+          <!-- Phrase Category Tabs -->
+          <div class="category-tabs" id="phraseCategoryTabs">
+            <button class="cat-tab active" data-cat="all">All</button>
+            <button class="cat-tab" data-cat="commands">Commands</button>
+            <button class="cat-tab" data-cat="greetings">Greetings</button>
+            <button class="cat-tab" data-cat="praise">Praise</button>
+            <button class="cat-tab" data-cat="materials">Materials</button>
+            <button class="cat-tab" data-cat="discipline">Attention</button>
+            <button class="cat-tab" data-cat="numbers">Numbers</button>
+          </div>
+
+          <!-- Phrase Search -->
+          <div class="phrase-search">
+            <input type="search" id="phraseSearchInput" placeholder="Filter phrases in Hindi or English..." />
+          </div>
+
+          <!-- Phrase List -->
+          <div class="phrase-list" id="phraseBankList">
+            <!-- Dynamically populated phrase bank items -->
+          </div>
+        </aside>
+      </div>
+
+      <!-- Standalone Offline Voice Tester Section in Live View -->
+      <section class="live-quick-tester-section" aria-label="Quick Offline Audio Tester">
+        <div class="tester-section-header">
+          <div class="tester-header-title">
+            <span class="tester-chip">⚡ OFFLINE SOUND CHECK</span>
+            <h3>📻 Quick Offline Audio &amp; Vernacular Voice Tester</h3>
+            <p class="section-subtext">Instant bidirectional translation testbed for 1-touch FLN acoustic and pronunciation verification without using the live microphone.</p>
+          </div>
+          <span class="verified-pill">100% Offline Synthesizer</span>
+        </div>
+
+        <div class="tester-widget-wrapper">
+          <div class="hero-copilot-widget" id="heroCopilotWidget" aria-label="Interactive Live Classroom Copilot Demo">
+            <!-- Sleek Tablet Device Shell -->
+            <div class="copilot-tablet-shell">
+              <!-- Top Hardware / Classroom Status Bar -->
+              <div class="copilot-screen-header">
+                <div class="screen-loc">
+                  <span class="pulse-indicator-emerald"></span>
+                  <span class="screen-loc-text">GPS Jamda · Class 1A</span>
+                </div>
+                <div class="screen-chips">
+                  <span class="screen-chip chip-offline" title="Operating with zero SIM / Wi-Fi">🟢 Airplane Mode</span>
+                  <span class="screen-chip chip-ram" title="Memory profile fits 2 GB hardware budget">384 MB / 2 GB</span>
+                </div>
+              </div>
+
+              <!-- Direction Mode Switcher -->
+              <div class="copilot-dir-selector">
+                <button class="copilot-dir-tab active" id="heroDirTeacherBtn" data-dir="teacher" title="Teacher commands in Hindi translated to Ol Chiki">
+                  <span class="dir-icon">👩‍🏫</span>
+                  <span class="dir-title">Teacher (Hindi → Santali)</span>
+                </button>
+                <button class="copilot-dir-tab" id="heroDirChildBtn" data-dir="child" title="Child mother tongue translated for Hindi teacher">
+                  <span class="dir-icon">🎒</span>
+                  <span class="dir-title">Child (Santali → Hindi)</span>
+                </button>
+              </div>
+
+              <!-- Interactive Exchange View -->
+              <div class="copilot-exchange-stage">
+                <!-- Source Utterance Bubble -->
+                <div class="copilot-bubble bubble-input">
+                  <div class="bubble-meta">
+                    <span class="speaker-label" id="heroSpeakerLabel">Teacher says (Hindi):</span>
+                    <span class="latency-pill" id="heroLatencyPill">⚡ 0.38s · Fast Path</span>
+                  </div>
+                  <div class="bubble-main-phrase" id="heroMainPhrase">“बच्चो, अपनी किताबें खोलो।”</div>
+                </div>
+
+                <!-- Instant Pipeline Connector &amp; Sound Wave -->
+                <div class="copilot-wave-connector">
+                  <div class="wave-track" id="heroWaveTrack">
+                    <span class="wave-bar b1"></span>
+                    <span class="wave-bar b2"></span>
+                    <span class="wave-bar b3"></span>
+                    <span class="wave-bar b4"></span>
+                    <span class="wave-bar b5"></span>
+                    <span class="wave-bar b6"></span>
+                    <span class="wave-bar b7"></span>
+                  </div>
+                  <span class="wave-label">Instant Mother-Tongue Synthesizer</span>
+                </div>
+
+                <!-- Vernacular Result Bubble -->
+                <div class="copilot-bubble bubble-output">
+                  <div class="bubble-meta">
+                    <span class="speaker-label target-label" id="heroTargetLabel">Santali (Ol Chiki) · Verified FLN:</span>
+                    <span class="verified-tag">✓ Birsa Murmu Verified</span>
+                  </div>
+                  <div class="bubble-vernacular" id="heroVernacularText">“ᱜᱤᱫᱽᱨᱟᱹ ᱠᱚ, ᱟᱯᱮᱭᱟᱜ ᱯᱩᱛᱷᱤ ᱠᱚ ᱡᱷᱤᱡᱽ ᱢᱮ᱾”</div>
+                  <div class="bubble-translit" id="heroTranslitText">(गिदरा को, आपेयाग पुथी को झीज मे)</div>
+                  
+                  <!-- Interactive One-Touch Audio Playback Button -->
+                  <div class="bubble-audio-row">
+                    <button class="copilot-listen-btn" id="heroListenBtn" title="Play authentic pronunciation audio">
+                      <span class="listen-icon">🔊</span>
+                      <span class="listen-txt" id="heroListenTxt">Tap to Hear Native Voice</span>
+                      <span class="listen-ripple"></span>
+                    </button>
+                    <span class="audio-verified-subtext">100% Offline Engine</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Interactive Quick-Phrases Bar -->
+              <div class="copilot-phrase-pills">
+                <span class="phrase-pills-label">Try phrase:</span>
+                <div class="phrase-pills-scroll">
+                  <button class="phrase-mini-chip active" data-phrase="0">📚 किताबें खोलो</button>
+                  <button class="phrase-mini-chip" data-phrase="1">🌟 बहुत अच्छा</button>
+                  <button class="phrase-mini-chip" data-phrase="2">🔢 गिनती १-१०</button>
+                  <button class="phrase-mini-chip" data-phrase="3">💧 पानी पियो</button>
+                </div>
+              </div>
+
+              <!-- Bottom Trustline -->
+              <div class="copilot-bottom-trust">
+                <span>🛡️ PALASH Glossary Aligned</span>
+                <span>•</span>
+                <span>Zero Network Delay</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- VIEW 4: WORKSHEET GENERATOR (DETERMINISTIC A4 PRINTER)                    -->
+    <!-- ========================================================================= -->
+    <section class="view-panel" id="view-worksheet">
+      <div class="module-header">
+        <div class="header-breadcrumb">
+          <button class="back-link" data-view="home">← Back to Dashboard</button>
+          <span class="sep">/</span>
+          <span>Worksheet Generator</span>
+          <span class="sep">/</span>
+          <span class="mode-tag">Deterministic · Ink-Friendly A4</span>
+        </div>
+        <div class="header-controls">
+          <button class="primary-button" id="printWorksheetBtn">
+            <span>🖨️ Print / Export PDF</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="worksheet-layout">
+        <!-- Configuration Form -->
+        <aside class="worksheet-form-pane">
+          <div class="config-card">
+            <h3>Worksheet Parameters</h3>
+            <p class="config-note">Assembled deterministically from 100% human-verified items. No random LLM hallucinations.</p>
+
+            <div class="form-field">
+              <label for="wsGradeSelect">Grade &amp; Language</label>
+              <select id="wsGradeSelect" disabled>
+                <option selected>Grade 1 · Santali (Ol Chiki) + Hindi</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="wsLessonSelect">Topic / Lesson Context</label>
+              <select id="wsLessonSelect">
+                <!-- Dynamically populated lessons -->
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="wsTemplateSelect">Exercise Template</label>
+              <select id="wsTemplateSelect">
+                <option value="match_words" selected>Match the Words (जोड़ी मिलाओ)</option>
+                <option value="picture_word">Picture to Word Matching (चित्र और शब्द)</option>
+                <option value="count_write">Count and Write (गिनो और लिखो)</option>
+                <option value="sound_letter">Letter &amp; Sound Identification (ध्वनि और अक्षर पहचान)</option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <div class="form-field half">
+                <label for="wsDifficulty">Difficulty</label>
+                <select id="wsDifficulty">
+                  <option value="1" selected>Level 1 (Foundational)</option>
+                  <option value="2">Level 2 (Standard)</option>
+                  <option value="3">Level 3 (Challenge)</option>
+                </select>
+              </div>
+
+              <div class="form-field half">
+                <label for="wsItemCount">Item Count</label>
+                <select id="wsItemCount">
+                  <option value="4">4 Items (Short)</option>
+                  <option value="6" selected>6 Items (Standard)</option>
+                  <option value="8">8 Items (Comprehensive)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label>Options</label>
+              <div class="checkbox-group">
+                <label><input type="checkbox" id="wsIncludeAnswerKey" checked /> Include Teacher Answer Key at bottom</label>
+                <label><input type="checkbox" id="wsIncludeTransliteration" checked /> Include Devanagari transliteration</label>
+              </div>
+            </div>
+
+            <button class="action-primary-btn full-width" id="regenerateWorksheetBtn">
+              <span>🔄</span> Assemble Worksheet
+            </button>
+          </div>
+        </aside>
+
+        <!-- A4 Printable Preview -->
+        <div class="worksheet-preview-pane">
+          <div class="a4-sheet" id="printableA4Sheet">
+            <!-- Official Header -->
+            <div class="a4-header">
+              <div class="a4-govt-title">
+                <div class="jharkhand-emblem" aria-hidden="true">★</div>
+                <div>
+                  <h4>झारखंड शिक्षा परियोजना परिषद् (JEPC) · PALASH</h4>
+                  <h5>प्राथमिक विद्यालय अभ्यास पत्रक (Primary Classroom Worksheet)</h5>
+                </div>
+              </div>
+              <div class="a4-meta-box">
+                <div><strong>Grade:</strong> 1</div>
+                <div><strong>Language:</strong> Hindi &amp; Santali (Ol Chiki)</div>
+                <div><strong>Date:</strong> ________________</div>
+              </div>
+            </div>
+
+            <!-- Student Details Row -->
+            <div class="a4-student-info">
+              <div class="info-item">विद्यार्थी का नाम (Student Name): __________________________</div>
+              <div class="info-item">क्रमांक (Roll No.): ______</div>
+            </div>
+
+            <!-- NIPUN Bharat Alignment Header -->
+            <div class="a4-lo-stamp">
+              <span class="stamp-icon">🎯</span>
+              <span><strong>NIPUN BHARAT LEARNING OUTCOME:</strong> <span id="a4LoText">PLACEHOLDER::EC-G1-001 — Recognizes primary sounds and letter symbols</span></span>
+            </div>
+
+            <!-- Instructions -->
+            <div class="a4-instructions">
+              <p><strong>निर्देश (Instructions):</strong> <span id="a4InstructionsText">बाईं तरफ के शब्दों को दाईं तरफ के सही संथाली (ओल चिकी) शब्दों से रेखा खींचकर मिलाइए। (Match the Hindi words with the correct Santali words).</span></p>
+            </div>
+
+            <!-- Dynamic Exercise Area -->
+            <div class="a4-exercise-content" id="a4ExerciseContent">
+              <!-- Dynamically generated items -->
+            </div>
+
+            <!-- Detachable Teacher Answer Key & LO Verification Stamp -->
+            <div class="a4-footer-key" id="a4AnswerKey">
+              <div class="key-header">
+                <span>✂ शिक्षक उत्तर कुंजी (TEACHER ANSWER KEY &amp; FLN RUBRIC) — FOR EVALUATION</span>
+                <span class="key-verified-tag">✓ ALL ITEMS DRAWN FROM VERIFIED STORE</span>
+              </div>
+              <div class="key-content" id="a4KeyContent">
+                <!-- Answer key items -->
+              </div>
+              <div class="a4-footer-credits">
+                <span>Generated by Gyaan Setu Classroom Copilot · Problem Statement 26042</span>
+                <span id="a4Timestamp">Printed: 2026-09-10 · Verified Shard: sat-g1-v14</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- VIEW 5: FLASHCARD STUDIO (FULL-SCREEN NATIVE AUDIO)                       -->
+    <!-- ========================================================================= -->
+    <section class="view-panel" id="view-flashcards">
+      <div class="module-header">
+        <div class="header-breadcrumb">
+          <button class="back-link" data-view="home">← Back to Dashboard</button>
+          <span class="sep">/</span>
+          <span>Flashcard Studio</span>
+          <span class="sep">/</span>
+          <span class="mode-tag" id="currentDeckTitle">Deck: Animals (ᱵᱤᱨ ᱡᱤᱭᱟᱹᱞᱤ)</span>
+        </div>
+        <div class="header-controls">
+          <button class="action-btn-pill" id="launchPresentationModeBtn">
+            <span>🖥️</span> Full-Screen Classroom Presentation
+          </button>
+        </div>
+      </div>
+
+      <div class="flashcards-layout">
+        <!-- Deck Selector Tabs -->
+        <div class="deck-selector-row" id="deckSelectorRow">
+          <!-- Dynamically populated deck buttons -->
+        </div>
+
+        <!-- Flashcard Stage -->
+        <div class="card-stage-container">
+          <div class="card-stage">
+            <!-- Navigation Arrow Left -->
+            <button class="stage-nav-btn prev" id="cardPrevBtn" aria-label="Previous card">‹</button>
+
+            <!-- The Main Card -->
+            <div class="flashcard" id="mainFlashcard">
+              <div class="card-verification-chip">
+                <span class="chip-dot"></span>
+                <span>✓ Verified Native Audio</span>
+              </div>
+
+              <div class="card-visual-container" id="cardVisual">
+                <!-- SVG Illustration -->
+              </div>
+
+              <div class="card-linguistic-info">
+                <!-- Hindi Word -->
+                <div class="card-hindi" id="cardHindiWord">बकरी (Bakri)</div>
+                <!-- Ol Chiki Tribal Script -->
+                <div class="card-olchiki" id="cardOlChikiWord">ᱢᱮᱨᱚᱢ</div>
+                <!-- Devanagari Pronunciation -->
+                <div class="card-deva" id="cardDevaWord">(मेरोम)</div>
+                <!-- Latin Phonetic Guide -->
+                <div class="card-latin" id="cardLatinWord">/ merom / · Meaning: Goat</div>
+              </div>
+
+              <!-- Audio Speaker Button -->
+              <button class="card-audio-btn" id="cardAudioBtn" title="Play native speaker pronunciation">
+                <span class="speaker-icon">🔊</span>
+                <span>Listen to Santali Audio</span>
+              </button>
+            </div>
+
+            <!-- Navigation Arrow Right -->
+            <button class="stage-nav-btn next" id="cardNextBtn" aria-label="Next card">›</button>
+          </div>
+
+          <!-- Card Deck Progress & Controls -->
+          <div class="deck-controls-bar">
+            <button class="control-text-btn" id="cardShuffleBtn">🔀 Shuffle Deck</button>
+            <div class="card-counter" id="cardCounter">Card 1 of 6</div>
+            <button class="control-text-btn" id="cardAutoplayBtn">▶ Auto Playback</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- VIEW 6: CONTENT VERIFICATION CONSOLE (BIRSA MURMU REVIEWER WEB APP)      -->
+    <!-- ========================================================================= -->
+    <section class="view-panel" id="view-reviewer">
+      <div class="module-header">
+        <div class="header-breadcrumb">
+          <button class="back-link" data-view="home">← Back to Dashboard</button>
+          <span class="sep">/</span>
+          <span>Reviewer Console</span>
+          <span class="sep">/</span>
+          <span class="mode-tag">Native Speaker Verification (Section 21)</span>
+        </div>
+        <div class="reviewer-badge">
+          <span class="reviewer-avatar">BM</span>
+          <span>Birsa Murmu (Dumka Resource Group)</span>
+        </div>
+      </div>
+
+      <div class="reviewer-layout">
+        <!-- Reviewer Stats & State Machine Rules -->
+        <div class="reviewer-summary-bar">
+          <div class="rev-stat-item">
+            <span class="stat-num" id="statPendingCount">3</span>
+            <span class="stat-label">Pending Review</span>
+          </div>
+          <div class="rev-stat-item">
+            <span class="stat-num" id="statApprovedCount">48</span>
+            <span class="stat-label">Verified &amp; Published</span>
+          </div>
+          <div class="rev-stat-item">
+            <span class="stat-num" id="statRejectedCount">2</span>
+            <span class="stat-label">Rejected with Code</span>
+          </div>
+          <div class="rev-stat-item">
+            <span class="stat-num">142</span>
+            <span class="stat-label">Education Fine-Tuning Pairs</span>
+          </div>
+          <div class="state-machine-box">
+            <strong>State Machine Enforced:</strong>
+            <code>DRAFT → AI_GENERATED → REVIEW_REQUIRED → NATIVE_VERIFIED → PUBLISHED</code>
+            <small>Live dynamic MT outputs are NEVER written to content store as anything but AI_GENERATED.</small>
+          </div>
+        </div>
+
+        <!-- Pending Items Queue -->
+        <div class="review-queue-container">
+          <h3>Verification Queue (Items Awaiting Native Sign-Off)</h3>
+          <p class="queue-subtext">Every tribal string must have reviewer sign-off before entering classroom packages. Review grammar, terminology match, audio pronunciation, and appropriateness for 6-year-olds.</p>
+
+          <div class="review-queue-list" id="reviewQueueList">
+            <!-- Dynamically populated review cards -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- VIEW 7: OFFLINE PACKAGE SYNC & DEVICE TELEMETRY                           -->
+    <!-- ========================================================================= -->
+    <section class="view-panel" id="view-sync">
+      <div class="module-header">
+        <div class="header-breadcrumb">
+          <button class="back-link" data-view="home">← Back to Dashboard</button>
+          <span class="sep">/</span>
+          <span>Offline Architecture &amp; Hardware Telemetry</span>
+          <span class="sep">/</span>
+          <span class="mode-tag">Android 9 · 2 GB RAM Specification</span>
+        </div>
+      </div>
+
+      <div class="sync-layout">
+        <!-- Left: Hardware Budget & Memory Telemetry -->
+        <div class="telemetry-card">
+          <div class="card-header-icon">
+            <span>📊</span>
+            <div>
+              <h3>Reference Device Telemetry (Section 27)</h3>
+              <small>Target: Android 9 (API 28), 2 GB RAM, Quad Cortex-A53, 16 GB Storage</small>
+            </div>
+          </div>
+
+          <div class="budget-table-wrap">
+            <table class="budget-table">
+              <thead>
+                <tr>
+                  <th>Resource</th>
+                  <th>Budget Target</th>
+                  <th>Current Runtime Status</th>
+                  <th>Result</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Peak RSS (Live Translation)</strong></td>
+                  <td>≤ 550 MB</td>
+                  <td><span class="metric-val" id="rssLiveVal">482 MB</span></td>
+                  <td><span class="chip-mini green">PASS</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Idle RSS (Teach Mode)</strong></td>
+                  <td>≤ 220 MB</td>
+                  <td><span class="metric-val" id="rssIdleVal">214 MB</span></td>
+                  <td><span class="chip-mini green">PASS</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Fast-Path Latency (p95)</strong></td>
+                  <td>≤ 1.5 s</td>
+                  <td><span class="metric-val">0.68 s</span></td>
+                  <td><span class="chip-mini green">PASS</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Dynamic MT Latency (p95)</strong></td>
+                  <td>≤ 3.0 s</td>
+                  <td><span class="metric-val">2.21 s</span></td>
+                  <td><span class="chip-mini green">PASS</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Grade 1 Pack Storage</strong></td>
+                  <td>≤ 150 MB</td>
+                  <td><span class="metric-val">64.8 MB</span></td>
+                  <td><span class="chip-mini green">PASS</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Child Voice Data Leaves Device</strong></td>
+                  <td>Zero (Never)</td>
+                  <td><span class="metric-val">0 bytes (RAM buffers only)</span></td>
+                  <td><span class="chip-mini green">PASS</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="model-lifecycle-box">
+            <h4>Sequential Model Residency Policy</h4>
+            <p>To avoid OOM crashing on 2 GB tablets, VAD is always resident. Hindi ASR unloads after 60s idle. MT is loaded lazily on fast-path misses. Synthesizer loads only when dynamic synthesis is required.</p>
+          </div>
+        </div>
+
+        <!-- Right: Language Pack Shards & Delta Sync -->
+        <div class="package-card">
+          <div class="card-header-icon">
+            <span>📦</span>
+            <div>
+              <h3>Language Pack: <code>sat-g1-content</code> (v14)</h3>
+              <small>Manifest-driven delta sync with SHA-256 shard checksum verification</small>
+            </div>
+          </div>
+
+          <div class="shards-list">
+            <div class="shard-item">
+              <div class="shard-info">
+                <strong>content.sqlite.gz</strong>
+                <small>Lessons, LO mapping, translations, worksheets · 8.4 MB</small>
+                <code>sha256: 7f3a9e14bc0891d248...</code>
+              </div>
+              <span class="chip-mini green">✓ Verified</span>
+            </div>
+
+            <div class="shard-item">
+              <div class="shard-info">
+                <strong>phrasebank.sqlite.gz</strong>
+                <small>840+ classroom commands with FTS5 index · 3.2 MB</small>
+                <code>sha256: 9b2c1840fa21e893c5...</code>
+              </div>
+              <span class="chip-mini green">✓ Verified</span>
+            </div>
+
+            <div class="shard-item">
+              <div class="shard-info">
+                <strong>audio-shard-000.tar</strong>
+                <small>Cached native speaker Opus audio (~24 kbps mono) · 10.5 MB</small>
+                <code>sha256: e410d55981ca32fa10...</code>
+              </div>
+              <span class="chip-mini green">✓ Verified</span>
+            </div>
+
+            <div class="shard-item">
+              <div class="shard-info">
+                <strong>noto-sans-ol-chiki.ttf</strong>
+                <small>SIL OFL bundled tribal script font · 120 KB</small>
+                <code>sha256: a123490b83de5c9071...</code>
+              </div>
+              <span class="chip-mini green">✓ Bundled</span>
+            </div>
+          </div>
+
+          <div class="sync-actions-box">
+            <div class="sync-status-text">
+              <span>Last synced: <strong>2026-09-08 via BRP Anjali Kumari (Local Hotspot)</strong></span>
+            </div>
+            <div class="sync-button-row">
+              <button class="primary-button" id="simulateSyncBtn">
+                <span>🔄 Simulate Local P2P Delta Sync (v15)</span>
+              </button>
+              <button class="outline-button" id="toggleAirplaneBtn">
+                <span>✈️ Toggle Airplane Mode</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Integrated Voice & Translation Tools References (PRD Section 41 & 42) -->
+      <div class="content-section" style="padding-top: 20px;">
+        <div class="telemetry-card" style="margin-top: 10px;">
+          <div class="card-header-icon">
+            <span>📚</span>
+            <div>
+              <h3>Integrated Voice Translation Tools &amp; Research Foundations</h3>
+              <small>Official open-source models, benchmarks, and Jharkhand state repositories</small>
+            </div>
+          </div>
+          <div class="tools-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; margin-top: 14px;">
+            <a href="https://github.com/AI4Bharat/IndicTrans2/tree/main" target="_blank" rel="noopener noreferrer" class="tool-ref-card" style="display:block; background: var(--faint); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 14px; transition: border-color 0.15s;">
+              <div style="font-size: 11px; font-weight: 700; color: var(--red); margin-bottom: 4px;">1. AI4BHARAT INDICTRANS2</div>
+              <strong style="font-size: 13px; display: block; margin-bottom: 4px;">IndicTrans2 (sat_Olck) MT Model</strong>
+              <p style="font-size: 11px; color: var(--muted); margin: 0 0 8px;">State-of-the-art MT for all 22 Scheduled Indian languages, covering Santali in Ol Chiki. Distilled 200M INT8 weights for offline edge devices.</p>
+              <span style="font-size: 10px; color: var(--blue); font-weight: 600;">github.com/AI4Bharat/IndicTrans2 ↗</span>
+            </a>
+
+            <a href="https://huggingface.co/papers/2512.04765" target="_blank" rel="noopener noreferrer" class="tool-ref-card" style="display:block; background: var(--faint); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 14px; transition: border-color 0.15s;">
+              <div style="font-size: 11px; font-weight: 700; color: var(--green); margin-bottom: 4px;">2. ADIBHASHAA BENCHMARK</div>
+              <strong style="font-size: 13px; display: block; margin-bottom: 4px;">Tribal MT Benchmark (arXiv 2512.04765)</strong>
+              <p style="font-size: 11px; color: var(--muted); margin: 0 0 8px;">Community-curated open parallel corpus and MT benchmark for Santali, Mundari, Gondi, and Bhili curated by IIT Delhi.</p>
+              <span style="font-size: 10px; color: var(--blue); font-weight: 600;">huggingface.co/papers/2512.04765 ↗</span>
+            </a>
+
+            <a href="https://github.com/karya-inc/dataset-mundari-tts" target="_blank" rel="noopener noreferrer" class="tool-ref-card" style="display:block; background: var(--faint); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 14px; transition: border-color 0.15s;">
+              <div style="font-size: 11px; font-weight: 700; color: var(--amber); margin-bottom: 4px;">3. KARYA MUNDARI TTS</div>
+              <strong style="font-size: 13px; display: block; margin-bottom: 4px;">Mundari Speech Dataset (Phase 2)</strong>
+              <p style="font-size: 11px; color: var(--muted); margin: 0 0 8px;">Crowdsourced tribal voice dataset for training lightweight VITS/Piper voices for Mundari expansion in Jharkhand primary schools.</p>
+              <span style="font-size: 10px; color: var(--blue); font-weight: 600;">github.com/karya-inc/dataset-mundari-tts ↗</span>
+            </a>
+
+            <a href="https://tts.bhashini.ai/openapi/ui/?utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" class="tool-ref-card" style="display:block; background: var(--faint); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 14px; transition: border-color 0.15s;">
+              <div style="font-size: 11px; font-weight: 700; color: #6366f1; margin-bottom: 4px;">4. BHASHINI CLOUD TTS</div>
+              <strong style="font-size: 13px; display: block; margin-bottom: 4px;">National Language Platform TTS API</strong>
+              <p style="font-size: 11px; color: var(--muted); margin: 0 0 8px;">Cloud pipeline tool utilized during lesson authoring and batch package building for high-fidelity audio synthesis and QA.</p>
+              <span style="font-size: 10px; color: var(--blue); font-weight: 600;">tts.bhashini.ai/openapi/ui ↗</span>
+            </a>
+
+            <a href="https://bor.jharkhand.gov.in/index.php?p=submenupagecontent&pg=124&utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" class="tool-ref-card" style="display:block; background: var(--faint); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 14px; transition: border-color 0.15s;">
+              <div style="font-size: 11px; font-weight: 700; color: #0d9488; margin-bottom: 4px;">5. GOVT OF JHARKHAND</div>
+              <strong style="font-size: 13px; display: block; margin-bottom: 4px;">Board of Revenue &amp; Tribal Portal</strong>
+              <p style="font-size: 11px; color: var(--muted); margin: 0 0 8px;">Official demographic and administrative portal for Jharkhand's scheduled tribal areas and indigenous community initiatives.</p>
+              <span style="font-size: 10px; color: var(--blue); font-weight: 600;">bor.jharkhand.gov.in ↗</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- FLOATING INTERACTIVE SIH 4-MINUTE DEMO RUNNER (Section 39)               -->
+  <!-- ========================================================================= -->
+  <div class="demo-runner-bar collapsed" id="demoRunnerBar">
+    <div class="runner-header" id="toggleDemoRunnerHeader">
+      <div class="runner-title">
+        <span class="runner-dot"></span>
+        <strong>SIH 4-Minute Presentation Stepper</strong>
+        <span class="step-counter" id="demoStepCounter">Step 1 / 15</span>
+      </div>
+      <div class="runner-timer" id="demoTimer">0:00 / 4:00</div>
+      <div class="runner-controls">
+        <button class="runner-step-btn" id="demoPrevBtn" title="Previous Step">‹</button>
+        <button class="runner-step-btn" id="demoNextBtn" title="Next Step">›</button>
+        <button class="runner-toggle-btn" id="demoCollapseBtn" title="Expand / Collapse Stepper">▲</button>
+        <button class="runner-close-btn" id="demoCloseBtn" title="Dismiss Stepper (Reopen via topbar 'Demo' button)">✕</button>
+      </div>
+    </div>
+    <div class="runner-body">
+      <div class="step-card">
+        <div class="step-meta">
+          <span class="step-target-screen" id="demoTargetScreen">Screen: Classroom Problem</span>
+          <span class="step-time-badge" id="demoTimeBadge">0:00</span>
+        </div>
+        <div class="step-dialogue">
+          <strong class="say-label">Say to Judges:</strong>
+          <p class="say-quote" id="demoSayQuote">"5,000+ schools in Jharkhand. The teacher speaks Hindi. The child doesn't."</p>
+        </div>
+        <div class="step-action-row">
+          <button class="step-execute-btn" id="demoExecuteBtn">⚡ Perform Step Action Now</button>
+          <span class="step-instruction" id="demoActionDesc">Shows tribal classroom background and introduces the core language barrier.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rejection Modal for Reviewer -->
+  <div class="modal-backdrop" id="rejectionModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3>Reject Item with Mandatory Reason Code</h3>
+        <button class="close-modal-btn" id="closeRejectModalBtn">✕</button>
+      </div>
+      <div class="modal-body">
+        <p>Under Section 21.3, rejections cannot be arbitrary. Choose an official reason code to feed back to curriculum teams:</p>
+        <div class="form-field">
+          <label for="rejectReasonSelect">Reason Code</label>
+          <select id="rejectReasonSelect">
+            <option value="TERMINOLOGY_MISMATCH">TERMINOLOGY_MISMATCH — Does not match PALASH textbook glossary</option>
+            <option value="INAPPROPRIATE_REGISTER">INAPPROPRIATE_REGISTER — Inappropriate tone/register for a 6-year-old</option>
+            <option value="ORTHOGRAPHY_ERROR">ORTHOGRAPHY_ERROR — Ol Chiki script/vowel modifier flaw</option>
+            <option value="AUDIO_QUALITY_DEFECT">AUDIO_QUALITY_DEFECT — Pronunciation, pacing, or synthetic audio artifact</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="rejectNotesInput">Reviewer Correction / Note (Optional)</label>
+          <textarea id="rejectNotesInput" rows="3" placeholder="Explain the expected tribal phrase or textbook reference..."></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="outline-button" id="cancelRejectBtn">Cancel</button>
+        <button class="primary-button" id="confirmRejectBtn">Confirm Rejection</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fullscreen Flashcard Presentation Overlay -->
+  <div class="presentation-overlay" id="presentationOverlay">
+    <button class="close-presentation-btn" id="closePresentationBtn" title="Exit Presentation (Esc)">✕ Exit</button>
+    <div class="pres-content">
+      <div class="pres-visual" id="presVisual"></div>
+      <div class="pres-words">
+        <div class="pres-olchiki" id="presOlChiki">ᱢᱮᱨᱚᱢ</div>
+        <div class="pres-deva" id="presDeva">(मेरोम)</div>
+        <div class="pres-hindi" id="presHindi">बकरी · Goat</div>
+      </div>
+      <button class="pres-audio-btn" id="presAudioBtn">
+        <span>🔊 Tap to Hear Native Audio</span>
+      </button>
+      <div class="pres-nav-row">
+        <button class="pres-nav" id="presPrevBtn">‹ Previous</button>
+        <span class="pres-counter" id="presCounter">1 / 6</span>
+        <button class="pres-nav" id="presNextBtn">Next ›</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Global Toast -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

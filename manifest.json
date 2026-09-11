@@ -1,0 +1,19 @@
+{
+  "name": "Gyaan Setu — Offline AI Vernacular Classroom Copilot",
+  "short_name": "Gyaan Setu",
+  "description": "Offline AI vernacular classroom copilot for mother-tongue primary education in Jharkhand (SIH PS 26042).",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#fbf8f3",
+  "theme_color": "#dd2f31",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "64x64 128x128 256x256 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
