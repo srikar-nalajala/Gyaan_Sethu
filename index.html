@@ -115,8 +115,18 @@
           <!-- Divider -->
           <span class="tools-divider"></span>
 
+          <!-- Quick Language Switcher Dropdown / Pill -->
+          <div class="lang-switcher-wrap" id="topLangSelectorWrap" title="Switch Classroom Language">
+            <svg class="lang-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            <select id="topLangSelect" class="top-lang-select" aria-label="Choose classroom language">
+              <option value="sat" selected>ᱥᱟᱱᱛᱟᱲᱤ · Santali</option>
+              <option value="hi">हिन्दी · Hindi</option>
+              <option value="en">English</option>
+            </select>
+          </div>
+
           <!-- Accessibility Audio Narrator -->
-          <button class="action-btn" id="narrateScreenBtn" title="Speak screen instructions in Hindi (Audio narrator)" aria-label="Audio narrator">
+          <button class="action-btn" id="narrateScreenBtn" title="Speak screen instructions (Audio narrator)" aria-label="Audio narrator">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
           </button>
 
@@ -201,27 +211,45 @@
       <section class="content-section" id="packSection">
         <div class="section-top">
           <div>
-            <h2>Choose your classroom language</h2>
-            <p class="section-subtext">Verified language models and native speaker recordings for Jharkhand primary schools.</p>
+            <h2 id="packSectionHeading">Choose your classroom language</h2>
+            <p class="section-subtext" id="packSectionSubtext">Verified language models and native speaker recordings for Jharkhand primary schools.</p>
           </div>
           <div class="section-note">
-            <span>◈</span> <strong>Santali (Ol Chiki) Active</strong>
+            <span>◈</span> <strong id="activePackNote">Santali (Ol Chiki) Active</strong>
             <span class="note-sep">|</span>
-            <span>◷</span> 64.8 MB Pack Loaded
+            <span id="packSizeNote">64.8 MB Pack Loaded</span>
           </div>
         </div>
 
         <div class="pack-row" role="list">
-          <button class="pack-pill selected" data-language="Santali" role="listitem">
+          <button class="pack-pill selected" data-language="Santali" data-code="sat" data-tag="sat_Olck" role="listitem" title="Santali Ol Chiki Classroom Copilot">
             <span class="pack-symbol">ᱥ</span>
             <div class="pack-details">
               <strong>Santali (ᱥᱟᱱᱛᱟᱲᱤ)</strong>
-              <small>Ol Chiki + Devanagari · MVP Language</small>
+              <small>Ol Chiki (sat_Olck) · Classroom Copilot</small>
             </div>
             <span class="pack-tag active-tag">Active (v14)</span>
           </button>
 
-          <button class="pack-pill muted-pack" data-language="Mundari" role="listitem">
+          <button class="pack-pill" data-language="Hindi" data-code="hi" data-tag="hin_Deva" role="listitem" title="Hindi Sarangi Medium">
+            <span class="pack-symbol" style="font-family: var(--font-deva);">हि</span>
+            <div class="pack-details">
+              <strong>Hindi (हिन्दी)</strong>
+              <small>Sarangi Textbook · Standard Medium</small>
+            </div>
+            <span class="pack-tag active-tag">Available</span>
+          </button>
+
+          <button class="pack-pill" data-language="English" data-code="en" data-tag="eng_Latn" role="listitem" title="English Mridang Medium">
+            <span class="pack-symbol" style="font-family: var(--font-sans); font-size: 15px; font-weight: 800;">EN</span>
+            <div class="pack-details">
+              <strong>English</strong>
+              <small>Mridang Textbook · SOE FLN</small>
+            </div>
+            <span class="pack-tag active-tag">Available</span>
+          </button>
+
+          <button class="pack-pill muted-pack" data-language="Mundari" data-code="unr" data-tag="unr_Olck" role="listitem" title="Mundari Phase 2">
             <span class="pack-symbol">ᱢ</span>
             <div class="pack-details">
               <strong>Mundari (ᱢᱩᱱᱰᱟᱨᱤ)</strong>
@@ -230,7 +258,7 @@
             <span class="pack-tag roadmap-tag">Roadmap</span>
           </button>
 
-          <button class="pack-pill muted-pack" data-language="Ho" role="listitem">
+          <button class="pack-pill muted-pack" data-language="Ho" data-code="hoc" data-tag="hoc_Wara" role="listitem" title="Ho Phase 3">
             <span class="pack-symbol">ᱦ</span>
             <div class="pack-details">
               <strong>Ho (ᱦᱳ)</strong>
