@@ -60,7 +60,13 @@ body.font-scale-150 { font-size: 19px; }
 body.font-scale-200 { font-size: 24px; }
 
 * { box-sizing: border-box; margin: 0; }
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
+  -webkit-text-size-adjust: 100%;
+}
 
 body {
   margin: 0;
@@ -71,6 +77,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   letter-spacing: -0.006em;
+  overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 button, input, select, textarea { font: inherit; }
@@ -3424,19 +3435,6 @@ a { text-decoration: none; color: inherit; }
   .twin-banner-row { grid-template-columns: 1fr; }
 }
 
-@media (max-width: 768px) {
-  .hero-inner { flex-direction: column; text-align: center; }
-  .hero-actions { justify-content: center; }
-  .hero-proof { justify-content: center; }
-  .path-grid { grid-template-columns: 1fr; }
-  .direction-switch-bar { grid-template-columns: 1fr; }
-  .script-header-row, .script-line-item { grid-template-columns: 1fr; gap: 10px; }
-  .script-line-actions { align-items: flex-start; flex-direction: row; }
-  .kids-activities-grid { grid-template-columns: 1fr !important; }
-  .student-hero-banner { flex-direction: column; text-align: center; }
-  .student-hero-left { flex-direction: column; }
-  .student-hero-right { justify-content: center; }
-}
 
 /* ==========================================================================
    BAAL SETU (BAL SETU) — PRIMARY STUDENT MODE STYLING
@@ -4003,469 +4001,640 @@ a { text-decoration: none; color: inherit; }
   }
 }
 
-/* --- MOBILE & TABLET PORTRAIT BREAKPOINT (<= 768px) --- */
+/* ==========================================================================
+   MOBILE-FIRST APP EXPERIENCE (<= 768px)
+   Native app feel: 52px sticky header + Bottom Thumb Nav Bar + Fluid Cards
+   Zero horizontal overflow + Touch-optimized 48dp+ tap targets
+   ========================================================================== */
 @media (max-width: 768px) {
-  /* Navigation Bar Overhaul on Mobile */
+  /* Global mobile container constraints */
+  html, body {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+    width: 100% !important;
+  }
+
+  .main-viewport {
+    padding: 0 12px !important;
+    padding-bottom: calc(84px + env(safe-area-inset-bottom, 16px)) !important;
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+  }
+
+  /* 1. COMPACT TOPBAR (52px single-row native header) */
   .topbar {
-    height: auto;
-    min-height: 56px;
-    padding: 8px 0;
+    height: 52px !important;
+    min-height: 52px !important;
+    padding: 0 !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 100 !important;
+    background: rgba(255, 255, 255, 0.97) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border-bottom: 1px solid rgba(228, 228, 231, 0.8) !important;
   }
 
   .topbar-inner {
-    flex-wrap: wrap;
-    gap: 10px;
-    padding: 0 14px;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 0 12px !important;
+    height: 100% !important;
+    gap: 8px !important;
   }
 
   .brand-group {
-    order: 1;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    flex-shrink: 1 !important;
+    min-width: 0 !important;
+  }
+
+  .brand {
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+  }
+
+  .brand-mark-wrap {
+    width: 30px !important;
+    height: 30px !important;
+    font-size: 14px !important;
+    border-radius: 8px !important;
+  }
+
+  .brand-lockup .brand-name {
+    font-size: 15px !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.3px !important;
+  }
+
+  .brand-meta {
+    display: none !important;
+  }
+
+  .classroom-badge {
+    padding: 2px 7px !important;
+    font-size: 10px !important;
+    border-radius: 999px !important;
+    max-width: 130px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  .classroom-badge .lang-divider,
+  .classroom-badge .lang-text {
+    display: none !important;
+  }
+
+  /* Hide search box in topbar on mobile to keep header clean */
+  .search-box {
+    display: none !important;
   }
 
   .top-actions {
-    order: 2;
-    margin-left: auto;
-    gap: 4px;
+    display: flex !important;
+    align-items: center !important;
+    gap: 5px !important;
+    flex-shrink: 0 !important;
+    margin-left: auto !important;
   }
 
-  /* Full-width scrollable segmented navigation on mobile */
+  .tools-cluster {
+    display: flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+  }
+
+  .tools-divider {
+    display: none !important;
+  }
+
+  .action-btn {
+    width: 30px !important;
+    height: 30px !important;
+    font-size: 9.5px !important;
+  }
+
+  .demo-launcher-btn {
+    padding: 3px 8px !important;
+    font-size: 9.5px !important;
+  }
+
+  .install-pwa-btn {
+    padding: 3px 8px !important;
+    font-size: 10px !important;
+    gap: 3px !important;
+  }
+
+  .avatar-btn {
+    width: 26px !important;
+    height: 26px !important;
+    font-size: 9px !important;
+  }
+
+  /* 2. NATIVE BOTTOM NAVIGATION BAR (Thumb-friendly, fixed at bottom) */
   .top-nav {
-    order: 3;
-    width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    padding: 4px 6px;
-    border-radius: var(--radius-full);
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    top: auto !important;
+    z-index: 1000 !important;
+    background: rgba(255, 255, 255, 0.96) !important;
+    backdrop-filter: blur(24px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+    border-top: 1px solid rgba(228, 228, 231, 0.9) !important;
+    border-radius: 0 !important;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.06) !important;
+    display: flex !important;
+    justify-content: space-around !important;
+    align-items: center !important;
+    padding: 4px 4px calc(4px + env(safe-area-inset-bottom, 8px)) !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    max-width: 100vw !important;
+    width: 100% !important;
+    height: auto !important;
+    gap: 2px !important;
   }
 
   .top-nav::-webkit-scrollbar {
-    display: none;
+    display: none !important;
   }
 
   .nav-btn {
-    flex-shrink: 0;
-    padding: 8px 12px;
-    font-size: 11.5px;
-    min-height: 40px;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 4px 6px !important;
+    min-height: 48px !important;
+    min-width: 42px !important;
+    flex: 1 0 auto !important;
+    border-radius: 10px !important;
+    font-size: 9.5px !important;
+    font-weight: 600 !important;
+    gap: 2px !important;
+    color: #64748b !important;
+    white-space: nowrap !important;
+    border: none !important;
+    background: transparent !important;
+    transition: all 0.15s ease !important;
+    text-align: center !important;
+    box-shadow: none !important;
   }
 
-  .search-box {
-    width: 32px;
-    padding: 0 8px;
+  .nav-btn .nav-icon {
+    font-size: 16px !important;
+    line-height: 1 !important;
+    display: block !important;
   }
 
-  .search-box input, .search-shortcut {
-    display: none;
+  .nav-btn span:not(.nav-icon):not(.nav-sub-chip) {
+    font-size: 9px !important;
+    line-height: 1 !important;
   }
 
-  .search-box:focus-within {
-    position: absolute;
-    top: 8px;
-    left: 12px;
-    right: 12px;
-    width: calc(100% - 24px);
-    z-index: 120;
+  .nav-btn.active {
+    color: var(--red) !important;
+    background: rgba(220, 38, 38, 0.08) !important;
+    font-weight: 700 !important;
+    box-shadow: none !important;
   }
 
-  .search-box:focus-within input {
-    display: block;
+  .nav-btn-kids {
+    background: #fffbeb !important;
+    color: #b45309 !important;
   }
 
-  /* Status Ribbon on Mobile */
-  .system-status-banner {
-    font-size: 10.5px;
+  .nav-btn-kids.active {
+    background: #fef3c7 !important;
+    color: #92400e !important;
   }
 
-  .status-banner-content {
-    padding: 4px 12px;
-    flex-wrap: wrap;
-    gap: 6px;
+  .nav-sub-chip {
+    display: none !important;
   }
 
-  /* Floating SIH Stepper Bar on Mobile */
+  /* Floating SIH Stepper Bar — sits cleanly above bottom nav */
   .runner-floating-bar {
     left: 8px !important;
     right: 8px !important;
     max-width: calc(100vw - 16px) !important;
-    bottom: 8px !important;
+    bottom: calc(64px + env(safe-area-inset-bottom, 8px)) !important;
   }
 
   .runner-inner {
-    padding: 10px 14px;
+    padding: 8px 12px !important;
   }
 
-  .runner-header {
-    flex-wrap: wrap;
-    gap: 6px;
+  /* 3. HERO SECTION ON MOBILE */
+  .hero-wrap {
+    border-radius: 0 0 16px 16px !important;
+    margin: 0 -12px !important;
   }
 
-  /* VIEW 1: Home Dashboard */
   .hero-inner {
-    flex-direction: column;
-    align-items: center;
-    padding: 28px 16px;
-    gap: 16px;
-    min-height: auto;
-    text-align: center;
+    padding: 20px 14px 18px !important;
+    gap: 10px !important;
+  }
+
+  .crumbs {
+    font-size: 9.5px !important;
+    gap: 6px !important;
+    margin-bottom: 8px !important;
+    justify-content: center !important;
+  }
+
+  .crumb-sep {
+    display: none !important;
+  }
+
+  .crumbs span:not(.verified-pill) {
+    display: none !important;
+  }
+
+  .verified-pill {
+    padding: 3px 9px !important;
+    font-size: 9.5px !important;
   }
 
   .hero-copy h1 {
-    font-size: 28px;
-    line-height: 1.2;
-    margin-bottom: 10px;
+    font-size: 23px !important;
+    line-height: 1.22 !important;
+    letter-spacing: -0.5px !important;
+    margin-bottom: 8px !important;
   }
 
   .hero-lede {
-    font-size: 13px;
+    font-size: 13px !important;
+    line-height: 1.5 !important;
+    color: #52525b !important;
+    margin: 0 auto !important;
+    max-width: 100% !important;
   }
 
   .hero-actions {
-    flex-direction: column;
-    width: 100%;
-    gap: 10px;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+    width: 100% !important;
+    margin-top: 14px !important;
   }
 
-  .hero-actions button {
-    width: 100%;
-    min-height: 44px;
+  #heroStartLessonBtn {
+    grid-column: 1 / -1 !important;
+    min-height: 46px !important;
+    font-size: 14.5px !important;
+    border-radius: 12px !important;
+    justify-content: center !important;
   }
 
-  .hero-copilot-widget {
-    width: 100%;
-    max-width: 480px;
-    margin: 20px auto 0;
+  #heroKidsModeBtn {
+    grid-column: 1 / -1 !important;
+    min-height: 42px !important;
+    font-size: 13.5px !important;
+    border-radius: 12px !important;
+    justify-content: center !important;
   }
 
+  .hero-actions .outline-button {
+    min-height: 38px !important;
+    font-size: 12px !important;
+    padding: 6px 8px !important;
+    border-radius: 10px !important;
+    justify-content: center !important;
+    text-align: center !important;
+    width: 100% !important;
+  }
+
+  .hero-proof {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 4px !important;
+    font-size: 11px !important;
+    margin-top: 12px !important;
+    color: #71717a !important;
+  }
+
+  .proof-divider {
+    display: none !important;
+  }
+
+  /* 4. CONTENT SECTIONS & CARDS */
   .content-section {
-    padding: 24px 12px 0;
+    padding: 22px 0 0 !important;
   }
 
   .section-top {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 6px;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 4px !important;
+    margin-bottom: 14px !important;
+  }
+
+  .section-top h2 {
+    font-size: 18px !important;
+  }
+
+  .section-subtext {
+    font-size: 12.5px !important;
+    line-height: 1.45 !important;
   }
 
   .path-grid {
-    grid-template-columns: 1fr;
-    gap: 12px;
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
   }
 
   .path-card {
-    padding: 16px;
-    min-height: auto;
+    padding: 14px 12px !important;
+    border-radius: 14px !important;
+    min-height: auto !important;
+    gap: 12px !important;
+  }
+
+  .card-icon-wrap {
+    width: 42px !important;
+    height: 42px !important;
+    font-size: 18px !important;
+  }
+
+  .card-content h3 {
+    font-size: 15px !important;
+    margin-bottom: 3px !important;
+  }
+
+  .card-content p {
+    font-size: 12px !important;
+    line-height: 1.4 !important;
   }
 
   .pack-row {
-    flex-direction: column;
-    gap: 10px;
+    flex-direction: column !important;
+    gap: 8px !important;
   }
 
   .pack-pill {
-    width: 100%;
-    min-width: auto;
+    width: 100% !important;
+    padding: 10px 12px !important;
+    border-radius: 12px !important;
+  }
+
+  .class-banner,
+  .twin-banner-row {
+    flex-direction: column !important;
+    gap: 12px !important;
   }
 
   .class-banner {
-    flex-direction: column;
-    padding: 20px;
-    gap: 16px;
+    padding: 16px !important;
   }
 
-  .twin-banner-row {
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .trust-line {
-    flex-direction: column;
-    gap: 12px;
-    text-align: center;
-  }
-
-  .trust-items {
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  /* VIEW: Baal Setu (Student Playground) */
-  .student-hero-banner {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 16px;
-    gap: 14px;
-  }
-
-  .student-hero-left {
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .student-hero-right {
-    width: 100%;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .kids-activities-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-
-  .kids-animal-grid {
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-    gap: 10px;
-  }
-
-  .pebble-counting-stage {
-    padding: 14px;
-    gap: 14px;
-  }
-
-  .pebble-counter-display {
-    flex-direction: column;
-    text-align: center;
-    gap: 8px;
-  }
-
-  .pebble-btn {
-    width: 40px;
-    height: 40px;
-    font-size: 17px;
-  }
-
-  .kids-letters-row {
-    gap: 8px;
-    justify-content: center;
-  }
-
-  .letter-bubble-btn {
-    width: 50px;
-    height: 50px;
-  }
-
-  .big-glyph {
-    font-size: 22px;
-  }
-
-  .kids-giant-talking-mic {
-    width: 90px;
-    height: 90px;
-  }
-
-  /* VIEW 2: Teach Mode */
+  /* 5. VIEW 2: TEACH MODE */
   .teach-layout {
-    grid-template-columns: 1fr;
-    gap: 16px;
-    padding: 12px;
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+    padding: 8px 0 !important;
   }
 
   .teach-sidebar {
-    position: static;
-    max-height: none;
-    width: 100%;
+    position: static !important;
+    max-height: none !important;
+    width: 100% !important;
+    padding: 14px 12px !important;
+    border-radius: 14px !important;
   }
 
   .teach-header-banner {
-    flex-direction: column;
-    gap: 12px;
-    padding: 16px;
+    flex-direction: column !important;
+    gap: 10px !important;
+    padding: 14px 12px !important;
+    border-radius: 14px !important;
   }
 
   .header-controls {
-    width: 100%;
-    justify-content: space-between;
-    gap: 8px;
+    width: 100% !important;
+    justify-content: space-between !important;
+    gap: 6px !important;
+  }
+
+  .script-header-row {
+    display: none !important;
   }
 
   .script-line-item {
-    grid-template-columns: 1fr;
-    gap: 10px;
-    padding: 14px;
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+    padding: 12px !important;
+    border-radius: 14px !important;
+    background: #ffffff !important;
+  }
+
+  .script-vernacular-col {
+    padding: 8px 10px !important;
+    background: #fff8f8 !important;
+    border-radius: 10px !important;
+    border: 1px solid #fee2e2 !important;
   }
 
   .script-line-actions {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    margin-top: 6px;
+    display: flex !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+    width: 100% !important;
+    gap: 6px !important;
   }
 
-  .classroom-grid-2 {
-    grid-template-columns: 1fr;
-    gap: 14px;
+  .script-play-btn {
+    min-height: 40px !important;
+    padding: 6px 14px !important;
+    font-size: 12.5px !important;
+    border-radius: 10px !important;
   }
 
-  /* VIEW 3: Live Classroom */
+  /* 6. VIEW 3: LIVE CLASSROOM */
   .live-layout {
-    grid-template-columns: 1fr;
-    gap: 16px;
-    padding: 12px;
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+    padding: 8px 0 !important;
   }
 
   .direction-switch-bar {
-    grid-template-columns: 1fr;
-    gap: 8px;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 6px !important;
+  }
+
+  .direction-tab {
+    padding: 8px 6px !important;
+    font-size: 11px !important;
+  }
+
+  .direction-tab small {
+    display: none !important;
   }
 
   .transcript-pane {
-    min-height: 220px;
-    max-height: 320px;
-    padding: 12px;
+    max-height: 240px !important;
+    min-height: 180px !important;
+    padding: 10px !important;
   }
 
-  .live-bubble {
-    max-width: 95%;
-    padding: 12px 14px;
+  .giant-mic-btn {
+    width: 76px !important;
+    height: 76px !important;
   }
 
-  .bubble-output-main {
-    font-size: 19px;
+  .sim-controls {
+    display: flex !important;
+    overflow-x: auto !important;
+    width: 100% !important;
+    gap: 6px !important;
+    padding: 4px 0 !important;
+    scrollbar-width: none !important;
+    -webkit-overflow-scrolling: touch !important;
   }
 
-  .waterfall-bars {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
+  .sim-btn {
+    flex-shrink: 0 !important;
+    padding: 6px 10px !important;
+    font-size: 11px !important;
   }
 
-  .mic-controls-row {
-    flex-direction: column;
-    align-items: center;
-    gap: 14px;
+  .phrasebank-drawer {
+    position: static !important;
+    max-height: 320px !important;
+    padding: 14px 12px !important;
+    border-radius: 14px !important;
   }
 
-  .manual-input-box {
-    flex-direction: column;
-    width: 100%;
+  .category-tabs {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    flex-wrap: nowrap !important;
   }
 
-  .send-phrase-btn {
-    width: 100%;
-    min-height: 40px;
+  .cat-tab {
+    flex-shrink: 0 !important;
+    padding: 4px 10px !important;
+    font-size: 11px !important;
   }
 
-  /* VIEW 4: Worksheet Generator */
+  .live-quick-tester-section {
+    padding: 14px 10px !important;
+    border-radius: 14px !important;
+  }
+
+  .copilot-tablet-shell {
+    padding: 12px !important;
+    border-radius: 16px !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+  }
+
+  .phrase-mini-chip {
+    padding: 4px 8px !important;
+    font-size: 11px !important;
+  }
+
+  /* 7. VIEW 4: WORKSHEET (Fix A4 overflow) */
   .worksheet-layout {
-    grid-template-columns: 1fr;
-    gap: 16px;
-    padding: 12px;
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+    padding: 8px 0 !important;
   }
 
   .worksheet-form-pane {
-    position: static;
+    position: static !important;
   }
 
   .worksheet-preview-pane {
-    padding: 12px;
-    overflow-x: auto;
+    padding: 0 !important;
+    width: 100% !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
   }
 
   .a4-sheet {
-    width: 100%;
-    min-width: 540px;
-    padding: 24px 20px;
+    min-width: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 14px 10px !important;
+    border-radius: 12px !important;
+    box-shadow: none !important;
+    border: 1px solid var(--line) !important;
+    font-size: 12px !important;
   }
 
-  /* VIEW 5: Flashcards */
+  /* 8. VIEW 5: FLASHCARDS */
+  .flashcards-layout {
+    grid-template-columns: 1fr !important;
+  }
+
   .flashcard-stage {
-    padding: 12px;
+    padding: 8px 0 !important;
   }
 
   .flashcard-card {
-    max-width: 100%;
-    width: 100%;
-    padding: 24px 16px;
+    max-width: 100% !important;
+    width: 100% !important;
+    min-height: 230px !important;
+    padding: 18px 12px !important;
   }
 
-  /* VIEW 6: Reviewer Console */
-  .reviewer-layout {
-    padding: 12px;
-    gap: 16px;
+  .card-olchiki-display {
+    font-size: 42px !important;
   }
 
-  .reviewer-summary-bar {
-    flex-direction: column;
-    gap: 10px;
+  /* 9. VIEW: BAAL SETU (KIDS MODE) */
+  .student-hero-banner {
+    margin: 6px 0 12px !important;
+    padding: 12px 14px !important;
+    border-radius: 16px !important;
   }
 
-  .review-item-card {
-    flex-direction: column;
-    gap: 12px;
-    padding: 14px;
+  .kids-activities-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+    padding: 0 0 16px !important;
   }
 
-  .review-actions-cell {
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 100%;
-    gap: 8px;
+  .kids-animal-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
   }
 
-  .review-actions-cell button {
-    flex: 1;
-    min-height: 38px;
-    justify-content: center;
+  .kid-touch-card {
+    min-height: 110px !important;
+    padding: 10px 6px !important;
+    border-radius: 14px !important;
   }
 
-  /* VIEW 7: Offline Sync & Specs */
-  .sync-layout {
-    padding: 12px;
-    gap: 16px;
+  .kid-card-icon {
+    font-size: 28px !important;
   }
 
-  .scorecard-grid {
-    grid-template-columns: 1fr;
-    gap: 10px;
+  .pebble-counting-stage {
+    padding: 12px !important;
   }
 
-  .telemetry-table-card {
-    overflow-x: auto;
-  }
-}
-
-/* --- SMALL MOBILE BREAKPOINT (<= 480px) --- */
-@media (max-width: 480px) {
-  .brand-meta {
-    display: none;
+  .kids-giant-talking-mic {
+    width: 80px !important;
+    height: 80px !important;
   }
 
-  .classroom-badge {
-    padding: 2px 6px;
-    font-size: 9.5px;
-  }
-
-  .classroom-badge .lang-divider, .classroom-badge .lang-text {
-    display: none;
-  }
-
-  .hero-copy h1 {
-    font-size: 24px;
-  }
-
-  .card-book {
-    left: 14px;
-  }
-
-  .a4-sheet {
-    min-width: 440px;
-    padding: 16px;
-  }
-
-  .match-columns-grid {
-    grid-template-columns: 1fr;
-    gap: 6px;
-  }
-
-  .match-connector {
-    display: none;
+  .letter-bubble-btn {
+    width: 44px !important;
+    height: 44px !important;
+    font-size: 18px !important;
   }
 }
 
@@ -4482,19 +4651,21 @@ a { text-decoration: none; color: inherit; }
   border-radius: inherit;
 }
 
-.top-nav {
-  max-width: min(58vw, 760px);
-  overflow-x: auto;
-  scrollbar-width: thin;
-}
+@media (min-width: 769px) {
+  .top-nav {
+    max-width: min(58vw, 760px);
+    overflow-x: auto;
+    scrollbar-width: thin;
+  }
 
-.nav-btn {
-  min-height: 40px;
-  font-weight: 600;
-}
+  .nav-btn {
+    min-height: 40px;
+    font-weight: 600;
+  }
 
-.nav-btn.active {
-  box-shadow: 0 0 0 1.5px rgba(220, 38, 38, 0.14), 0 2px 6px rgba(0, 0, 0, 0.06);
+  .nav-btn.active {
+    box-shadow: 0 0 0 1.5px rgba(220, 38, 38, 0.14), 0 2px 6px rgba(0, 0, 0, 0.06);
+  }
 }
 
 /* Children benefit from a single, high-contrast action area and less tiny text. */
@@ -4666,54 +4837,6 @@ button,
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
-  }
-}
-
-@media (max-width: 768px) {
-  .top-nav {
-    max-width: 100%;
-  }
-
-  .nav-btn {
-    min-height: 44px;
-    padding-inline: 14px;
-  }
-
-  .student-hero-banner {
-    margin: 14px;
-  }
-
-  .kids-activities-grid {
-    padding: 0 14px 24px;
-  }
-
-  .kids-card-activity {
-    padding: 20px 18px;
-  }
-
-  .kid-touch-card {
-    min-height: 152px;
-  }
-
-  .content-section {
-    padding-top: 32px;
-  }
-
-  .section-top {
-    margin-bottom: 24px;
-  }
-
-  .path-grid {
-    gap: 16px;
-  }
-
-  .path-card {
-    min-height: 124px;
-    padding: 22px 18px;
-  }
-
-  .card-meta {
-    flex-wrap: wrap;
   }
 }
 
