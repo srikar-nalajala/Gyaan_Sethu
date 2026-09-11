@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Gyaan Setu</string>
+    <string name="title_activity_main">Gyaan Setu</string>
+    <string name="package_name">org.gyaansethu.app</string>
+    <string name="custom_url_scheme">org.gyaansethu.app</string>
+</resources>

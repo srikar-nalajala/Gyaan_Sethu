@@ -1,12 +1,15 @@
 // Gyaan Setu - Offline-First Service Worker (SIH 26042)
-const CACHE_NAME = 'gyaan-setu-v1.1';
+const CACHE_NAME = 'gyaan-setu-v2.0';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
   './styles.css',
   './app.js',
   './manifest.json',
-  './favicon.svg'
+  './favicon.svg',
+  './icon-192.png',
+  './icon-512.png',
+  './icon-maskable-512.png'
 ];
 
 self.addEventListener('install', (event) => {

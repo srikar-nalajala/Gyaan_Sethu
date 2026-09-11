@@ -4589,6 +4589,41 @@
           });
       });
     }
+
+    // PWA Install to Home Screen Handler
+    let deferredInstallPrompt = null;
+    const installAppBtn = document.querySelector('#installPwaBtn');
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      // Prevent the mini-infobar from appearing on mobile
+      e.preventDefault();
+      deferredInstallPrompt = e;
+      if (installAppBtn) {
+        installAppBtn.style.display = 'inline-flex';
+      }
+    });
+
+    if (installAppBtn) {
+      installAppBtn.addEventListener('click', async () => {
+        if (!deferredInstallPrompt) {
+          showToast('ℹ️ To install: tap your browser menu (⋮) and select "Install app" or "Add to Home screen"');
+          return;
+        }
+        deferredInstallPrompt.prompt();
+        const { outcome } = await deferredInstallPrompt.userChoice;
+        if (outcome === 'accepted') {
+          installAppBtn.style.display = 'none';
+          showToast('🎉 Installing Gyaan Setu on your device...');
+        }
+        deferredInstallPrompt = null;
+      });
+    }
+
+    window.addEventListener('appinstalled', () => {
+      if (installAppBtn) installAppBtn.style.display = 'none';
+      deferredInstallPrompt = null;
+      showToast('✅ Gyaan Setu successfully installed as offline app!');
+    });
   });
 
 })();

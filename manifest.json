@@ -5,15 +5,51 @@
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
+  "display_override": ["standalone", "window-controls-overlay", "minimal-ui"],
   "background_color": "#fbf8f3",
   "theme_color": "#dd2f31",
   "orientation": "any",
+  "categories": ["education", "productivity"],
   "icons": [
     {
       "src": "favicon.svg",
-      "sizes": "64x64 128x128 256x256 512x512",
+      "sizes": "64x64",
       "type": "image/svg+xml",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Baal Setu (Kids Mode)",
+      "short_name": "Kids Mode",
+      "description": "Launch pictorial soundboard and phonics for students",
+      "url": "./index.html#kids",
+      "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Live Classroom Copilot",
+      "short_name": "Live Mode",
+      "description": "Real-time Hindi to Santali translation",
+      "url": "./index.html#live",
+      "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
     }
   ]
 }

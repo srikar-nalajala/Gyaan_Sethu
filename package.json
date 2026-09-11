@@ -1,0 +1,28 @@
+{
+  "name": "gyaan-setu",
+  "version": "1.0.0",
+  "description": "Gyaan Setu — Offline AI Vernacular Classroom Copilot",
+  "main": "app.js",
+  "scripts": {
+    "sync": "node sync-www.js && npx cap sync android",
+    "open:android": "node sync-www.js && npx cap open android",
+    "build:apk": "node sync-www.js && npx cap sync android && cd android && gradlew assembleDebug"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/srikar-nalajala/Gyaan_Sethu.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/srikar-nalajala/Gyaan_Sethu/issues"
+  },
+  "homepage": "https://github.com/srikar-nalajala/Gyaan_Sethu#readme",
+  "dependencies": {
+    "@capacitor/android": "^8.5.1",
+    "@capacitor/cli": "^8.5.1",
+    "@capacitor/core": "^8.5.1"
+  }
+}
