@@ -2593,7 +2593,9 @@
     selectedSyllabusSubject: "english",
     selectedSyllabusMonth: "all",
     teachSubjectFilter: "all",
-    teachMonthFilter: "all"
+    teachMonthFilter: "all",
+    playbackSpeed: 0.82, // Slower, deliberate pacing for primary tribal learners
+    voicePitch: 1.0     // Warm, natural pedagogical pitch
   };
 
   // =========================================================================
@@ -2633,18 +2635,29 @@
   }
 
   // Browser speech synthesis for classroom audio simulation
+  // Deliberately slowed (0.82x) with natural pitch and Indian voice selection for tribal primary students
   function speakText(text, lang, rate) {
     if (!window.speechSynthesis) return;
     window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(text);
-    utterance.rate = (rate || state.playbackSpeed) || 1.0;
-    utterance.pitch = 1.05; // Friendly, warm pedagogical tone
-    if (lang === 'hi') {
-      utterance.lang = 'hi-IN';
-    } else {
-      // For Santali, phonetically render in Hindi voice or default Indian English
-      utterance.lang = 'hi-IN';
+    utterance.rate = (typeof rate === 'number' ? rate : state.playbackSpeed) || 0.82;
+    utterance.pitch = state.voicePitch || 1.0;
+    utterance.lang = 'hi-IN';
+
+    try {
+      const voices = window.speechSynthesis.getVoices();
+      if (voices && voices.length > 0) {
+        const preferredVoice = voices.find(v => 
+          (v.lang === 'hi-IN' || v.lang === 'hi_IN')
+        ) || voices.find(v => v.lang.includes('IN')) || voices.find(v => v.name.toLowerCase().includes('hindi'));
+        if (preferredVoice) {
+          utterance.voice = preferredVoice;
+        }
+      }
+    } catch (e) {
+      // Fallback to system default
     }
+
     window.speechSynthesis.speak(utterance);
   }
 
@@ -3994,8 +4007,8 @@
         speech = "ज्ञान सेतु प्राथमिक विद्यालयों के लिए मातृभाषा शिक्षण सहायक उपकरण है।";
       }
       playChimeSuccess();
-      speakText(speech, 'hi', 1.0);
-      showToast('🔊 Playing screen narration in Hindi...');
+      speakText(speech, 'hi', state.playbackSpeed);
+      showToast('🔊 Playing screen narration in Hindi (Deliberate pace)...');
     });
 
     // Script Display toggles in Teach Mode
@@ -4495,7 +4508,7 @@
           speakSantali(item.satDeva, item.satOl);
           showToast(`Playing verified native Santali: ${item.satOl}`);
         } else {
-          speakText(item.hi, 'hi', 1.0);
+          speakText(item.hi, 'hi', state.playbackSpeed);
           showToast(`Playing Hindi translation: ${item.hi}`);
         }
 
